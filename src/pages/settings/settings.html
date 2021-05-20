@@ -1,0 +1,34 @@
+<!--
+  Generated template for the SettingsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>edit-profile</ion-title>
+  </ion-navbar>
+  <!--<ion-title><button></button><ion-icon name="arrow-round-back"></ion-icon></button></ion-title>-->
+</ion-header>
+
+<ion-content padding>
+
+  <ion-item *ngIf="form">
+    <ion-label>שלח לי הודעה בדואר אלקטרוני</ion-label>
+    <ion-checkbox tappable (click)="submit('email')" [(ngModel)]="form.userGetMsgToEmail" color="danger" ></ion-checkbox>
+  </ion-item>
+  <!--<ion-item>-->
+    <!--<ion-label>פנוי היום</ion-label>-->
+    <!--<ion-checkbox tappable (click)="submit('free_today')" [(ngModel)]="form.freeToday" color="danger" ></ion-checkbox>-->
+  <!--</ion-item>-->
+  <ion-item *ngIf="form">
+    <ion-label>שלח לי הודעה דחיפה</ion-label>
+    <ion-checkbox tappable (click)="submit('push')" [(ngModel)]="form.newMessPushNotif" color="danger" ></ion-checkbox>
+  </ion-item>
+  <ion-item *ngIf="isAvalible == 1">
+    <ion-label>לאפשר טביעת אצבע לאחר הכניסה</ion-label>
+    <ion-checkbox tappable (click)="submit('fingerprint')" [(ngModel)]="fingerAuth" color="danger" ></ion-checkbox>
+  </ion-item>
+  <div class="bottom"></div>
+</ion-content>

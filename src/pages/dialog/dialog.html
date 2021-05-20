@@ -1,0 +1,120 @@
+<!--
+  Generated template for the DialogPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>dialog</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content id="dialog" overflow-scroll="true" scroll="true">
+
+  <ion-card>
+    <ion-item>
+      <p class="dialog-avatar" *ngIf="user?.mainImage != ''" (click)="toProfilePage()"
+         [ngStyle]="{ 'background-image': 'url(' + api.siteUrl  + user?.mainImage?.url + ')'}"> {{'שיחה עם ' +
+        user.nickName}}</p>
+      <p class="dialog-avatar" *ngIf="user?.mainImage == ''" (click)="toProfilePage()"
+         [ngStyle]="{ 'background-image': 'url(' + api.url + '/images/no_photo_' + user.gender + '.jpg' + ')'}">
+        {{user.nickName}}</p>
+    </ion-item>
+    <p></p>
+  </ion-card>
+  <div class="messages">
+    <div class="no_results" *ngIf="messages?.length == 0">אין הודעות</div>
+    <ion-card [ngClass]="{'other-msg': user.userId == msg?.from }" *ngFor="let msg of messages"
+              class="usr_msg msg-item">
+      <ion-grid>
+        <ion-row>
+          <ion-col
+                  *ngIf="!msg.voiceUrl && msg?.text != 'לא ניתן לצפות בהודעה. לרכישת מנוי לחץ כאן' && msg?.text != 'לא ניתן לצפות בהודעה. לרכישת מנוי לחץ כאן או השתמש בנקודה לקריאת הודעות'"
+                  class="text" width-75>
+            <ion-card-content *ngIf="msg?.missingCall == ''" [innerHTML]="msg?.text" item-left>
+            </ion-card-content>
+            <ion-card-content *ngIf="msg?.missingCall !== ''" item-left>
+              <div [innerHTML]="msg?.text"></div>
+              <div class="click" (click)="toVideoChat()" [innerHTML]="msg?.missingCall"></div>
+            </ion-card-content>
+          </ion-col>
+          <ion-col *ngIf="msg?.text == 'לא ניתן לצפות בהודעה. לרכישת מנוי לחץ כאן'"
+                   class="text" width-75>
+            <ion-card-content item-left>
+              {{'לא ניתן לצפות בהודעה. לרכישת מנוי'}}
+              <span color="blue" (click)="subscription()"> לחץ כאן</span>
+            </ion-card-content>
+          </ion-col>
+          <ion-col
+                  *ngIf="msg?.text == 'לא ניתן לצפות בהודעה. לרכישת מנוי לחץ כאן או השתמש בנקודה לקריאת הודעות'"
+                  class="text" width-75>
+            <ion-card-content item-left>
+              {{'לא ניתן לצפות בהודעה. לרכישת מנוי'}}
+              <span color="blue" (click)="subscription()">לחץ כאן </span>
+              או <span color="blue" (click)="useFreePointToReadMessage(msg)">השתמש בנקודה </span> לקריאת
+              הודעות
+            </ion-card-content>
+          </ion-col>
+          <ion-col *ngIf="msg.voiceUrl && msg?.text != 'לא ניתן לצפות בהודעה. לרכישת מנוי לחץ כאן או השתמש בנקודה לקריאת הודעות' && msg?.text != 'לא ניתן לצפות בהודעה. לרכישת מנוי לחץ כאן'" class="text" width-75>
+            <ion-card-content class="msg-{{msg.id}}" item-left>
+              <div class="duration-bar"><span class="mejs-time-total"><span class="runner"></span></span></div>
+              <button *ngIf="(isPlay == false) || (currentMsgPlay != msg.id && isPlay == true )" style="width:19%;" class="play-button" (click)="playrecord(msg)" ion-button
+                      color="danger">
+                <ion-icon name="play"></ion-icon>
+              </button>
+              <button *ngIf="isPlay == true && currentMsgPlay == msg.id" style="width:19%;" class="play-button" ion-button
+                      color="danger">
+                <ion-icon name="pause"></ion-icon>
+              </button>
+            </ion-card-content>
+          </ion-col>
+          <!-- <ion-col *ngIf="msg.voiceUrl && isPlay == true && currentMsgPlay == msg.id" class="text" width-75>
+               <ion-card-content item-left>
+                   {{msg.text}}
+               </ion-card-content>
+           </ion-col>-->
+          <ion-col class="status" width-25>
+            <ion-card-content class="date" item-right>
+              <div class="time">{{msg.time}}
+              </div>
+              <div class="date">{{msg.date}}</div>
+              <!--<ion-icon *ngIf="user?.id == msg.from" name="checkmark"></ion-icon>-->
+              <div *ngIf="user.userId != msg?.from">
+                <ion-icon *ngIf="user?.id != msg.from && msg.isRead == 0" name="done-all"
+                          class="v-ios-icon"></ion-icon>
+                <ion-icon color="danger" *ngIf="user?.id != msg.from && msg.isRead == 1" name="done-all"
+                          class="v-ios-icon icon-md-danger"></ion-icon>
+              </div>
+            </ion-card-content>
+            <!--*ngIf="msg?.text != 'לא ניתן לצפות בהודעה. לרכישת מנוי לחץ כאן או השתמש בנקודה לקריאת הודעות' && msg?.text != 'לא ניתן לצפות בהודעה. לרכישת מנוי לחץ כאן'"-->
+            <ion-icon (click)="deleteMsg(msg)" class="delete" name="ios-trash-outline"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+    <!--<div class="textarea-box">-->
+    <!--<ion-textarea id="dialog-msg1" [(ngModel)]="message" placeholder="" item-left></ion-textarea>-->
+    <!--</div>-->
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar id="form-dialog">
+    <ion-textarea id="dialog-msg" (keyup)="countCharacters($event)" #dialog_msg (ionFocus)="onFocus()"
+                  [(ngModel)]="message" placeholder="" item-left></ion-textarea>
+    <button *ngIf="!submitBtn && micStatus" (click)="sendVoiceMessage()" class="record-b" ion-button icon-only round
+            outline
+            color="danger">
+      <ion-icon name="ios-mic"></ion-icon>
+    </button>
+
+    <button *ngIf="!submitBtn && !micStatus" class="record-b" (click)="sendVoiceMessage()" ion-button icon-only
+            round outline>
+      <ion-icon name="radio-button-on"></ion-icon>
+    </button>
+
+    <button *ngIf="submitBtn" class="send-msg" (click)="sendMessage()" ion-button color="danger">שלח</button>
+    <!--[disabled]="check"-->
+  </ion-toolbar>
+</ion-footer>

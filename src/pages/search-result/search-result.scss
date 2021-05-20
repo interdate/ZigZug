@@ -1,0 +1,385 @@
+page-search-result {
+  $app-direction: rtl;
+  .age {
+    font-size: 13px;
+    display: inline;
+    margin-right: 5px;
+    margin-left: -3px;
+    line-height: 17px;
+    font-weight: bold;
+  }
+
+  .mem-right {
+    float: right;
+    width: 218px;
+    box-sizing: border-box;
+  }
+
+  .mem-left {
+    float: right;
+    width: 63px;
+    font-size: 15px;
+    font-weight: normal;
+    line-height: 32px;
+  }
+
+  .card-md, .card-ios {
+    background: #dbdbd2;
+    box-shadow: none;
+  }
+
+  .list-ios {
+    /*margin: 9px 0 32px 0;*/
+  }
+  .list-md{
+    text-align: center;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+  }
+
+  .item-md, .item-ios {
+    position: relative;
+  }
+  .item-md:nth-child(odd), .item-ios:nth-child(odd) {
+    padding-left: 0;
+  }
+
+  /*.item-md.item-block .item-inner:nth-child(odd) {
+    padding-left: 8px;
+  }*/
+
+  .list-ios > .item-block:first-child {
+    border-top: 0;
+  }
+
+  .online {
+    top: 7px;
+    right: 10px;
+    height: 12px;
+    width: 12px;
+    background-color: #45d362;
+    position: absolute;
+    border-radius: 100%;
+  }
+
+  .king {
+    background: url(../assets/img/icons/icoKing.png) no-repeat;
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    background-size: cover;
+    right: -4px;
+    top: -3px;
+    z-index: 999;
+  }
+
+  .card-md, .card-ios {
+    //width: calc(56% - 20px);
+    //float: left;
+    float: right;
+    display: inline-block;
+    width: calc(50% - 10px) !important;
+    padding: 0px;
+    margin: 0 5px 0 5px;
+  }
+
+  ion-card.card-md {
+    width: calc(50% - 16px) !important;
+    //margin: 0 5px 0 5px;
+    margin: 0 11px 0 0px;
+  }
+
+  ion-card.card-ios {
+    //float: left;
+    //margin: 0 0px 0 10px;
+  }
+
+  .list-ios, .list-ios .card-ios {
+    direction: ltr;
+  }
+
+  .card-ios {
+    //width: calc(55% - 23.6px);
+    //float: left;
+  }
+
+  @media (max-width: 1919px) {
+    //.card-md {
+    //  width: calc(50%);
+    //}
+    //.card-ios {
+    //  width: calc(51.9% - 23.6px);
+    //}
+  }
+
+  @media (max-width: 414px) {
+    .card-ios {
+      width: calc(55% - 20.6px);
+    }
+    .sorting .open {
+      right: calc(50% - 7px);
+    }
+  }
+
+  @media (max-width: 375px) {
+    .card-ios {
+      width: calc(56% - 21.6px);
+    }
+    .sorting .open {
+      right: calc(50% - 8px);
+    }
+  }
+
+  @media (max-width: 320px) {
+    .card-ios {
+      width: calc(58% - 23.6px);
+    }
+    .sorting .open {
+      right: calc(50% - 8px);
+    }
+  }
+
+  .new-user {
+    background: url(../assets/img/icons/new.png) no-repeat;
+    width: 26px;
+    height: 26px;
+    position: absolute;
+    background-size: cover;
+    left: 8px;
+    top: 2px;
+    z-index: 999;
+  }
+
+  .paying {
+    background: url(../assets/img/icons/paid.png) no-repeat;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-size: cover;
+    left: -1px;
+    top: 122px;
+    z-index: 999999;
+  }
+
+  .approve{
+    background: url(https://www.zigzug.co.il/images/icons/approved.png) no-repeat;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-size: cover;
+    right: 0px;
+    top: 122px;
+    z-index: 999999;
+  }
+
+}
+
+.ios .sorting{
+  top: 40px;
+}
+
+.platform-ios page-hello-ionic .sorting {
+  top: 70px;
+}
+
+.platform-ios page-hello-ionic .sorting .icon-ios {
+  font-size: 1.8em;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+p
+.page-hello-ionic .card-md + ion-card, .page-hello-ionic .card-ios + ion-card {
+  margin-top: 0;
+}
+
+.loader {
+  margin: 0 auto;
+  text-align: center;
+  height: 35px;
+  width: 70px;
+}
+
+ion-card {
+  float: right;
+}
+
+.user-section > img {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.user-section {
+  clear: both;
+}
+
+.long-name {
+  max-width: calc(100% - 47px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.long-city {
+  width: 60%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.page-hello-ionic .name {
+  font-size: 14px;
+  font-weight: bold;
+  float: right;
+}
+
+.page-hello-ionic, .location {
+  font-size: 14px;
+  clear: both;
+}
+
+.page-hello-ionic ion-card-title {
+  margin: 0;
+  padding-left: 8px;
+  padding-right: 8px;
+  background-color: black;
+  color: white;
+  height: 55px
+}
+
+#mobmsg {
+  background: url(../assets/img/icons/mobmsg.png) center no-repeat;
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+}
+
+#add-green {
+  background: url(../assets/img/icons/fav-red.png) center no-repeat;
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+}
+
+#remove-green {
+  background: url(../assets/img/icons/fav-remove.png) center no-repeat;
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+}
+
+#like-red {
+  background: url(../assets/img/icons/like-red.png) center no-repeat;
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+}
+
+#cap {
+  background: url(../assets/img/icons/cap.png) center no-repeat;
+  width: 27px;
+  height: 20px;
+  background-size: contain;
+}
+
+#unblock {
+  background: url(../assets/img/icons/unblock.png) center no-repeat;
+  width: 27px;
+  height: 20px;
+  background-size: contain;
+}
+
+.width3 {
+  width: 33.33%;
+}
+
+.user-section {
+  border: 1px solid #404040;
+  border-radius: 12px;
+}
+
+.distance {
+  font-weight: bold;
+  position: absolute;
+  left: 8px;
+  line-height: 18px;
+  direction: rtl;
+  font-size: 12px;
+}
+
+ul.profile-btn {
+  height: 47px;
+  padding: 8px 0;
+  margin: 0;
+}
+
+.adw{
+  background: #ffb26d;
+  border-radius: 0px 0px 12px 12px;
+}
+
+ul.profile-btn li {
+  margin-left: 15%;
+  float: none;
+  margin: 0 auto;
+}
+
+ul.profile-btn .btn {
+  margin-left: 3%;
+  width: 30%;
+  float: left;
+}
+
+ul.profile-btn .btn div {
+  font-size: 10px;
+  text-align: center;
+}
+
+.profile-btn li:last-child {
+  margin: 0;
+}
+
+.user-section {
+  position: relative;
+}
+
+.user-section > .wrap {
+  background: white;
+  border-radius: 12px;
+}
+
+.usr_profile .avatar {
+  width: 100%;
+  height: 130px;
+  background-size: cover;
+  background-position: top;
+  border-radius: 11px 11px 0 0;
+}
+
+.content-md, .content-ios {
+  background-color: #dbdbd2;
+}
+
+.item-md.item-block .item-inner, .item-ios.item-block .item-inner {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.item-md {
+  padding-right: 10px;
+}
+
+.label-md, .label-ios {
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+}
+
+ion-popover {
+  // left: -57px;
+  top: 38px;
+}
+
+

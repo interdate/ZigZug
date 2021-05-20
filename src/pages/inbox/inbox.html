@@ -1,0 +1,44 @@
+<!--
+  Generated template for the InboxPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>inbox</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div class="no_results" *ngIf="users && users?.length == 0">{{ textMess?.no_results }}</div>
+  <div [virtualScroll]="users" [approxItemHeight]="'140px'" [approxItemWidth]="'calc(100% - 20px)'" [bufferRatio]="2">
+    <ion-card *virtualItem="let user" tappable (click)="toDialogPage(user)">
+      <ion-card-content [ngClass]="{'highlight': user.user.userId==='468385291'}">
+        <div class="usr_img" *ngIf="user.user.mainImage" [ngStyle]="{ 'background-image': 'url('  + (api.testingMode ? ('https://www.zigzug.co.il/images/users/large/' + user.user.userGender + '.jpg') : api.siteUrl  + user.user.mainImage?.url) + ')'}" ></div>
+        <div class="usr_img" *ngIf="user.user.noPhoto" [ngStyle]="{ 'background-image': 'url(' + (api.testingMode ? ('https://www.zigzug.co.il/images/users/large/' + user.user.userGender + '.jpg') : (api.siteUrl  + user.user.noPhoto)) + ')'}" ></div>
+        <ion-card-title>
+          <div class="name">{{ user.user.nickName }}</div>
+          <div class="date">{{ user.recentMessage.date }}</div>
+        </ion-card-title>
+        <div class="message">
+          <p>
+            {{ user.recentMessage.text }}
+          </p>
+          <div class="counter" *ngIf="user.newMessagesCount > 0" >{{ user.newMessagesCount }}</div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div class="bottom"></div>
+</ion-content>
+<ion-footer>
+
+  <ion-navbar>
+    <ion-title></ion-title>
+  </ion-navbar>
+
+</ion-footer>

@@ -1,0 +1,54 @@
+<!--
+  Generated template for the SubscriptionPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div *ngIf="data">
+    <h1>{{ data.title }}</h1>
+    <div class="text-before" [innerHTML]="data.textBefore"></div>
+    <div class="paymentbox" *ngFor="let subscription of data.subscriptions" (click)="sendForm(subscription)">
+        <div class="cont">
+            <div class="total">
+                <h3><div class="nis">₪</div>{{ subscription.price}}<br>
+                    <span [ngClass]="{'margin': subscription.opt == '5'}">{{ subscription.period }}</span></h3>
+            </div>
+            <h2>{{ subscription.title }}</h2>
+            <p>{{ subscription.description }}</p>
+
+        </div>
+    </div>
+    <div id="get-discount">
+      <input name="coupon" type="text" placehollder="קוד קלט" [(ngModel)]="coupon">
+      <button (click)="sendCoupon()" >קבל הנחה</button>
+    </div>
+      <form *ngIf="form" id="telepay" action="{{ form.action }}" method="get">
+          <input type="hidden" name="formId" [(ngModel)]="form.formId" />
+          <input type="hidden" name="app" [(ngModel)]="form.mobile" />
+          <input type="hidden" name="userId" [(ngModel)]="form.userId" />
+          <input type="hidden" name="product" [(ngModel)]="form.product" />
+          <input type="hidden" name="payPeriod" [(ngModel)]="form.payPeriod" />
+          <input type="hidden" name="prc" [(ngModel)]="form.prc" />
+          <input type="hidden" name="amount" value="1" />
+      </form>
+    <div class="text-after" [innerHTML]="data.textAfter"></div>
+  </div>
+  <div class="bottom"></div>
+</ion-content>
+<ion-footer>
+
+  <ion-navbar class="footerMenu">
+    <ion-title>settings</ion-title>
+  </ion-navbar>
+
+</ion-footer>

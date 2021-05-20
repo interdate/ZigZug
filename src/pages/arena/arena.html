@@ -1,0 +1,49 @@
+<!--
+  Generated template for the ArenaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>arena</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="no_results" *ngIf="users?.length == 0">{{ texts?.no_results }}</div>
+  <!-- <div padding>
+     <p>This is the place where you can learn who liked your photo on The Arena.</p>
+     <p>If someone you like likes you back - both of you will receive a Bingo! notification.</p>
+   </div>-->
+  <!--<div class="wrap" >
+    <span *ngIf="notifications > 0" class="inbox_count counter">{{ notifications }}</span>
+    <button (click)="toNotifications()" class="notifications_btn" ion-button item-right icon-left>
+      <ion-icon id="notifications"></ion-icon>
+      Notifications
+    </button>
+</div>-->
+  <ion-slides *ngIf="users" ng-if="true" freeMode="true" loop="true" #slider (ionSlideReachStart)="slideChanged($event)" >
+    <ion-slide  *ngFor="let user of users">
+      <ion-card *ngIf="user?.imageUrl">
+        <div class="clr"></div>
+        <div  tappable (click)="toProfile(user)" class="pop_title"><span>{{user?.nickName}},</span> {{user?.age}} {{user?.area}}</div>
+        <div class="avatar" [ngStyle]="{ 'background-image': 'url(' + (api.testingMode ? ('https://www.zigzug.co.il/images/users/large/' + user.userGender + '.jpg') : api.siteUrl + user?.imageUrl) + ')'}"></div>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+  <div class="right-click-aria" (click)="slides.slideNext();"></div>
+  <div class="left-click-aria" (click)="slides.slidePrev();"></div>
+  <div *ngIf="users?.length > 0" class="buttons">
+    <img src="assets/img/icons/redthumb.png" class="like-red" (click)="goToSlide('dislike')">
+    <img src="assets/img/icons/pmsg.png" (click)="toDialog()" id="send-msg">
+    <img src="assets/img/icons/thumbgreen.png" id="heart-green" (click)="goToSlide('like')">
+  </div>
+</ion-content>
+<ion-footer>
+
+  <ion-navbar>
+    <ion-title></ion-title>
+  </ion-navbar>
+
+</ion-footer>

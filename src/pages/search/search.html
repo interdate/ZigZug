@@ -1,0 +1,89 @@
+<!--
+  Generated template for the SearchPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-item class="border-top">
+    <ion-label>{{ form?.form?.region.label }}</ion-label>
+    <ion-select okText="אישור" cancelText="ביטול" item-content name="area" multiple="true"
+                [(ngModel)]="form?.form?.region.value">
+      <ion-option value="{{area.value}}" *ngFor="let area of form.form.region.choices">{{area.label}}</ion-option>
+    </ion-select>
+  </ion-item>
+  <div (click)="openSelect(form?.form?.ageFrom,'ageFrom')" class="border-top">
+    <div class="select-value">{{form?.form?.ageFrom.valLabel}}</div>
+    <ion-label>{{ form?.form?.ageFrom.label }}</ion-label>
+    <div class="clr"></div>
+  </div>
+  <div (click)="openSelect(form?.form?.ageTo,'ageTo')" class="border-top">
+    <div class="select-value">{{form?.form?.ageTo.valLabel}}</div>
+    <ion-label>{{ form?.form?.ageTo.label }}</ion-label>
+    <div class="clr"></div>
+  </div>
+  <div (click)="openSelect(form?.form?.gender,'gender')" class="border-top">
+    <div class="select-value">{{form?.form?.gender.valLabel}}</div>
+    <ion-label>{{ form?.form?.gender.label }}</ion-label>
+    <div class="clr"></div>
+  </div>
+  <!--<ion-item class="border-top">-->
+    <!--<ion-label>{{form?.form?.ageFrom.label}}</ion-label>-->
+    <!--<ion-select okText="אישור" cancelText="ביטול" item-content name="area" [(ngModel)]="form?.form?.ageFrom.value">-->
+      <!--<ion-option value="{{ageFrom.value}}" *ngFor="let ageFrom of form?.form?.ageFrom.choices">{{ageFrom.label}}-->
+      <!--</ion-option>-->
+    <!--</ion-select>-->
+  <!--</ion-item>-->
+  <!--<ion-item class="border-top">-->
+    <!--<ion-label>{{form?.form?.ageTo.label}}</ion-label>-->
+    <!--<ion-select okText="אישור" cancelText="ביטול" item-content name="area" [(ngModel)]="form?.form?.ageTo.value">-->
+      <!--<ion-option value="{{ageTo.value}}" *ngFor="let ageTo of form?.form?.ageTo.choices">{{ageTo.label}}-->
+      <!--</ion-option>-->
+    <!--</ion-select>-->
+  <!--</ion-item>-->
+  <!--<ion-item class="border-top">-->
+    <!--<ion-label>{{ form?.form?.gender.label }}</ion-label>-->
+    <!--<ion-select okText="אישור" cancelText="ביטול" item-content name="area" multiple="false"-->
+                <!--[(ngModel)]="form?.form?.gender.value">-->
+      <!--<ion-option value="{{area.value}}" *ngFor="let area of form?.form?.gender.choices">{{area.label}}-->
+      <!--</ion-option>-->
+    <!--</ion-select>-->
+  <!--</ion-item>-->
+  <ion-item class="border-top">
+    <ion-label>{{ form?.form?.userLookingForGender.label }}</ion-label>
+    <ion-select okText="אישור" cancelText="ביטול" item-content name="area" multiple="true"
+                [(ngModel)]="form?.form?.userLookingForGender.value">
+      <ion-option value="{{area.value}}" *ngFor="let area of form?.form?.userLookingForGender.choices">{{area.label}}
+      </ion-option>
+    </ion-select>
+  </ion-item>
+
+  <!--<button full color="danger" (click)="toSearchResultsPage('search-form-1')" class="search-1" ion-button>{{ form.form.submit }}</button>
+<div class="or">או</div>-->
+  <ion-item class="border-top" style="padding-right: 0px;">
+    <ion-input [(ngModel)]="form?.form?.username.value" placeholder="{{ form?.form?.username.label }}:"
+               type="text"></ion-input>
+  </ion-item>
+
+  <button full class="btn-search" color="danger" (click)="toSearchResultsPage()" ion-button>{{ form?.form?.submit }}</button>
+
+  <div class="or">או</div>
+  <button class="adv-search" (click)="toAdvancedPage()" full ion-button>חיפוש מתקדם</button>
+  <div class="bottom"></div>
+</ion-content>
+<ion-footer>
+
+  <ion-navbar class="footerMenu">
+    <ion-title></ion-title>
+  </ion-navbar>
+
+</ion-footer>

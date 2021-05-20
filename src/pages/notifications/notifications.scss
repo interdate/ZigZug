@@ -1,0 +1,35 @@
+page-notifications {
+  .notifications {
+    width: 33px;
+  }
+
+  .bingo {
+    width: 65px;
+  }
+
+  .segment-md-secondary .segment-button.activated, .segment-md-secondary .segment-button.segment-activated {
+    border-color: #e20012;
+  }
+
+  .segment-ios-secondary .segment-button.segment-activated {
+    background-color: transparent;
+  }
+
+  .segment-ios-secondary .segment-button {
+    border-color: transparent;
+    border-bottom: 1px solid #cccccc;
+  }
+
+  .segment-ios-secondary .segment-button.segment-activated {
+    border-bottom: 1px solid #ef027b;
+  }
+
+  .segment-ios .segment-button {
+    height: 4rem;
+  }
+
+  .bottom {
+    float: left;
+    clear: both;
+  }
+}

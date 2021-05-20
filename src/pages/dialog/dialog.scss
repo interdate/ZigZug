@@ -1,0 +1,218 @@
+page-dialog {
+  ion-card {
+    position: relative;
+  }
+
+  .col {margin-left: 12px}
+
+  .counter {
+    left: 14%;
+    top: 5px;
+    z-index: 99999;
+  }
+
+  .play-button{
+    font-size: 1.2rem;
+  }
+
+  .admin-messages button.button-default{
+    border-color: #ec649f7a;
+    background: #ec649f;
+    color: #fff;
+    /* text-align: center; */
+    display: block;
+    margin: 12px auto 0 auto;
+    width: 70%;
+  }
+
+  .duration-bar { position: relative; }
+  .duration-bar .runner {
+    position: absolute;
+    display: block;
+    width: 20px;
+    height: 22px;
+    top: -6px;
+    left: 0;
+    z-index: 9999;
+    background: url(http://m.richdate.co.il/js/audio-player/css/handle-lg.png) no-repeat;
+  }
+
+  button.play-button {
+    background-color: #f4f4f4;
+    left: 0;
+    position: absolute;
+    top: -6px;
+  }
+
+  .button.record-b {
+    width: 2.8em;
+  }
+
+  button.play-button ion-icon[name=play], button.play-button ion-icon[name=pause]{
+    color: #000000;
+    //padding: 0 0.45em;
+  }
+
+  ion-icon[name=radio-button-on]{
+    color: red;
+    height: 15px;
+    // padding: 0 0.32em;
+  }
+
+
+  .mejs-time-total {
+    position: absolute;
+    background: #565860;
+    width: calc(100% - 52px) !important;
+    border-radius: 3px;
+    right: 0;
+    display: block;
+    top: 16px;
+    height: 12px;
+  }
+
+  .icon-md-danger {
+    color: blue;
+  }
+
+  ion-col span {
+    color: #2e6374;
+  }
+
+  .delete {
+    position: absolute;
+    font-size: 1.5em;
+    left: -13px;
+    bottom: -4px;
+    padding: 10px 5px;
+  }
+
+  .delete:before {
+    font-size: 23px;
+  }
+
+  .text-input-md {
+    margin: 2px 0 0 10px;
+  }
+
+  .usr_msg ion-card-content {
+    padding: 0;
+    position: relative;
+  }
+  .date {
+    text-align: center;
+    font-size: 10px;
+    color: #666;
+  }
+
+  .msg-item {
+    width: 90%;
+  }
+
+  .other-msg {
+    float: left;
+  }
+
+  .toolbar-ios {
+    // margin-bottom: 7px;
+    background-color: lightgrey;
+  }
+
+  .footer .toolbar-content-ios {
+    margin-top: 7px;
+    margin-bottom: 12px;
+    height: auto;
+  }
+
+  .v-ios-icon {
+    font-size: 2.5rem;
+    position: absolute;
+    bottom: -21px;
+    left: 21px;
+  }
+
+  .record-b {
+    float: left;
+    margin-left: 6%;
+  }
+
+  ion-textarea, textarea {
+    width: 74%;
+    //width: 62%;
+    height: 55px;
+    float: left;
+  }
+  .send-msg {
+    /*float: right;*/
+    float: left;
+    margin-left: 1%;
+  }
+
+  .item-md, .item-ios {
+    background-color: #fff;
+  }
+
+  ion-footer .toolbar-background-md,
+  ion-footer .toolbar-background-ios {
+    background-color: #ecedf3;
+  }
+
+  ion-footer .toolbar-background-ios {
+    height: 0;
+    margin-top: auto;
+  }
+
+  ion-avatar div {
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    border-radius: 50%;
+
+  }
+
+  .dialog-avatar {
+    margin: 5px;
+    line-height: 40px;
+    background: left center no-repeat;
+    background-size: 40px auto;
+    text-align: center;
+  }
+
+  .textarea-box {
+    position: relative;
+    display: block;
+    //background: #ffffff;
+    width: 100%;
+    //height: 1px;
+    overflow: hidden;
+  }
+
+  .record-b {
+    border-color: #56585f;
+    color: #56585f;
+  }
+
+  .messages ion-card:not(.other-msg) {
+    background-color: rgba(226,0,18,.55);/*rgb(236, 100, 159);*/
+  }
+
+  .messages {margin-bottom: 65px}
+
+  .grid{padding-bottom: 12px}
+  .status {max-width: 25%;}
+
+  .messages ion-card:not(.other-msg) .status {
+    padding-bottom: 15px;
+  }
+
+  .messages ion-card:not(.other-msg) .delete{
+    bottom: 2px;
+  }
+
+  .text {max-width:75%;}
+
+  .item-md ion-avatar[item-left], .item-md ion-thumbnail[item-left],
+  .item-ios ion-avatar[item-left], .item-ios ion-thumbnail[item-left] {
+    margin: 8px 13px;
+  }
+}

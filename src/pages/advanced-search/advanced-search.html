@@ -1,0 +1,69 @@
+<!--
+  Generated template for the AdvancedSearchPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>advanced-search</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div *ngIf="form">
+    <div *ngFor="let field of form; let i = index">
+
+      <div *ngIf="field.type == 'range'" [ngClass]="{'border-top': i > 0}">
+        <div class="select-value-to" (click)="openSelect(field,i,'To')">{{field.valLabelTo}}</div>
+        <div class="label-to">{{field.labelTo}}</div>
+        <div class="select-value-from" (click)="openSelect(field,i,'From')">{{field.valLabelFrom}}</div>
+        <div class="label-from">{{field.labelFrom}}</div>
+        <ion-label class="{{ field?.class }}">{{ field.label }}</ion-label>
+        <div class="clr"></div>
+      </div>
+
+      <div *ngIf="field.type == 'select'" (click)="openSelect(field,i)" [ngClass]="{'border-top': i > 0}">
+        <div class="select-value">{{field.valLabel}}</div>
+        <ion-label class="{{ field?.class }}">{{ field.label }}</ion-label>
+        <div class="clr"></div>
+      </div>
+
+      <div *ngIf="field.type == 'text'">
+        <ion-item style="padding-right: 0px;"  [ngClass]="{'border-top': i > 0}">
+          <ion-input [(ngModel)]="searchParams[field.name]" placeholder="{{ field.label }}:"
+                     type="text"></ion-input>
+        </ion-item>
+        <div *ngIf="errors[field.name]" class="err">{{errors[field.name] }}</div>
+      </div>
+
+
+      <ion-item *ngIf="field.type == 'multiselect'" [ngClass]="{'border-top': i > 0}">
+        <ion-label class="{{ field?.class }}">{{ field.label }}</ion-label>
+        <ion-select okText="אישור" cancelText="ביטול" multiple="true"  [(ngModel)]="searchParams[field.name]">
+          <ion-option value="{{item.value}}" *ngFor="let item of field.choices">{{item.label}}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item *ngIf="field.type == 'checkbox'" [ngClass]="{'border-top': i > 0}">
+        <ion-label>{{ field.label }}</ion-label>
+        <ion-checkbox color="danger" item-right [(ngModel)]="searchParams[field.name]"></ion-checkbox>
+      </ion-item>
+      <button class="clean-button" *ngIf="field.type == 'submit'" full (click)=clearForm() ion-button>נקה טופס</button>
+      <button *ngIf="field.type == 'submit'" full color="danger" (click)=toSearchResultsPage() ion-button>{{ field.value }}</button>
+    </div>
+
+  </div>
+  <div class="bottom"></div>
+</ion-content>
+<ion-footer>
+
+  <ion-navbar>
+    <ion-title></ion-title>
+  </ion-navbar>
+
+</ion-footer>

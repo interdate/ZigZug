@@ -1,0 +1,295 @@
+page-login {
+  .err {
+    text-align: center;
+    font-size: 14px;
+    background: rgba(204, 204, 204, 0.7);
+  }
+
+  .link-registration {
+    text-align: center;
+    text-decoration: underline;
+  }
+  .bg-image {
+    background: url(../assets/img/bg_login.jpg);
+    background-size: auto 600px;
+    background-position: center 50px;
+    background-repeat: no-repeat;
+    background-color: #0f1526;
+  }
+
+  ion-item.item-md, ion-item.item-ios {
+    background-color: transparent;
+    padding-right: 0px;
+  }
+
+  .text-input-md, .text-input-ios {
+    margin: 8px;
+    width: calc(100% - 16px);
+  }
+
+  .login-btn {
+    padding: 0px 16px 0px;
+  }
+
+  .btn {
+    width: 47.9%;
+  }
+
+  .btn.grey {
+    background-color: #ccc;
+    color: #000;
+  }
+
+  .android{
+    text-align: center;
+  }
+
+  .android img{
+    width: 90%;
+    margin: 5px;
+  }
+
+  .register{
+    font-family: "Myriad Hebrew";
+    width: 200px;
+    margin: 20px auto;
+    border-radius: 5px;
+    text-align: center;
+    color: #000;
+    //font-weight: bold;
+    font-size: 19px;
+    background-color: #f9c05d;
+    padding: 10px 5px 8px;
+    //letter-spacing: -1px;
+  }
+
+  .search-login-form{
+    width: 90%;
+    margin: 10px auto;
+    border: 2px #ff0000 solid;
+    padding: 10px;
+  }
+
+  .search-login-form ion-label{
+    color: #fff;
+    float:right;
+    margin-top: 8px;
+  }
+
+  .search-login-form .select-value{
+    float:right;
+  }
+
+  .search-login-form .gender ion-label, .search-login-form .ageFrom ion-label{
+    width: 35%;
+  }
+
+  .search-login-form .ageTo ion-label{
+    width: 40px;
+    text-align: center;
+  }
+
+  .search-login-form .gender .select-value{
+    width: 65%;
+  }
+
+  .search-login-form .ageFrom .select-value, .search-login-form .ageTo .select-value{
+    width: calc(32.5% - 20px);
+  }
+
+  .search-login-form .gender{
+    margin: 5px 0 15px;
+  }
+
+  .send-search{
+    color: #fff;
+    text-align: center;
+    width: 65%;
+    margin: 15px 35% 5px;
+    border-radius: 5px;
+    background-color: #c8001d;
+    padding: 9px 5px 10px;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .login-video{
+    margin: 20px -5%;
+    width: 110%;
+    text-align: center;
+    padding: 60px 0 40px;
+    background-image: url(../assets/img/bg_video_login.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  .login-video .title1{
+    font-family: "Myriad Hebrew";
+    color: #fff;
+    font-size: 60px;
+    float: right;
+    margin: 10px 8% 5px 0px;
+  }
+
+  .login-video .title2{
+    font-family: "Myriad Hebrew";
+    color: #000;
+    font-size: 56px;
+    float: right;
+    margin: 13px 0 5px 0px;
+  }
+
+  .login-video .title3{
+    font-family: "Myriad Hebrew";
+    color: #fff;
+    font-size: 20px;
+    margin: 19px 15px 5px 0;
+    text-align: right;
+    float: right;
+    width: 120px;
+  }
+
+  .login-video .video-button{
+    font-family: "Myriad Hebrew";
+    text-align: center;
+    float: left;
+    width: 150px;
+    padding: 10px 5px 6px;
+    margin: 10px 0 12px 8%;
+    color: #000;
+    background-color: #fdfcfc;
+    border-radius: 5px;
+  }
+
+  .members{
+    text-align: center;
+  }
+
+  .new-member .title{
+    color: #fff;
+    font-family: "Myriad Hebrew";
+    text-align: center;
+    font-size: 30px;
+  }
+
+  .members .member{
+    margin: 0 0 10px;
+    font-family: "Myriad Hebrew";
+  }
+
+  .member .member-img{
+    width: 230px;
+    height: 230px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin: 0 auto 5px;
+  }
+
+  .member .username{
+    color: #fff;
+    font-size: 20px;
+  }
+
+  .member .data{
+    color: #929396;
+    font-size: 14px;
+    text-shadow: 0px 0px 0px #fff;
+  }
+
+  .member .more{
+    color: #fd2432;
+    margin: 0 auto 25px;
+    font-size: 18px;
+    padding-left: 20px;
+    background-image: url(../assets/img/left-icon.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 16px;
+    width: 100px;
+  }
+
+  .articles{
+    width: 110%;
+    margin: 0 -5%;
+    padding: 10px;
+    background-color: #e9e9ea;
+    text-align: center;
+    font-family: "Myriad Hebrew";
+  }
+
+  .articles h2.title{
+    font-size: 28px;
+  }
+
+  .reads .read .read-img{
+    width: 180px;
+    height: 180px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin: 0 auto 5px;
+  }
+
+  .reads .read h3.title{
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .reads .read .text{
+    color: #929396;
+    font-size: 13px;
+    margin: 0 auto 5px;
+    max-height: 32px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .reads .read .more{
+    color: #fd2432;
+    margin: 0 auto 25px;
+    font-size: 16px;
+    padding-left: 20px;
+    background-image: url(../assets/img/left-icon.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 16px;
+    width: 136px;
+  }
+
+  .footer-app{
+    width: 110%;
+    margin: 0 -5%;
+    padding: 10px;
+    background-color: #ffffff;
+    text-align: center;
+    font-family: "Myriad Hebrew";
+  }
+
+  .footer-app h2.title{
+    font-size: 28px;
+    margin-top: 10px;
+  }
+
+  .footer-app .android{
+    box-shadow: 0 0 3px #000;
+    border-radius: 17px;
+  }
+
+
+  ion-footer {
+    background-color: transparent;
+    bottom: 20px;
+  }
+
+  @media (max-width: 320px) {
+    button .button-inner {
+      font-size: 0.8em;
+    }
+  }
+}
+
+.ios page-login .bg-image {
+  background-position: center 44px;
+}

@@ -1,0 +1,46 @@
+<h1 style="text-align: center;">Silicom Achieves Strategic New Design Win: <br />
+Top-5 Global Telco Selects Silicom Accelerator Cards for its 5G Networks</h1>
+<p>&nbsp;</p>
+<p><strong>KFAR SAVA, Israel — January 11, 2021, - Silicom Ltd. (NASDAQ: <span style="color: #0f93d1;"><a style="color: #0f93d1;" href="http://www.nasdaq.com/symbol/silc" target="_blank" rel="noopener">SILC</a></span>)</strong>, a leading provider of networking and data infrastructure solutions, today announced that one of the world’s largest telcos has awarded it a design win for its recently-announced vRAN (Virtual Radio Access Network) FEC Accelerator card, which will be deployed in the telco’s new 5G network Distributed Units (DUs).</p>
+<p><br />
+For the customer’s initial field deployments, Silicom has already received POs totaling more than $1.5 million for this card, and 2021 revenues from the design win are expected to reach approximately $3 million. <br />
+As part of the deployment process, Silicom will work closely with two of the telco’s DU suppliers, both world-leading server manufacturers. These suppliers are the parties who actually place the POs with Silicom, and as a part of their purchasing process, they will certify the Silicom cards for use in their DUs. This will open the door for sales of the Silicom FEC accelerator card to additional end-users of these manufacturers’ servers and DUs, all of which leverage the ORAN trend supported by the Silicom card.</p>
+<p><br />
+“We are excited to achieve this important design win, a clear confirmation of the superiority of our unique expertise in the 5G Distributed Unit (DU) domain,” commented Shaike Orbach, Silicom’s CEO. “With all major mobile players now beginning to scale up their 5G deployments, demand is rising for innovative performance-enhancing concepts and technologies. With strengths in so many aspects of these complex technologies, we are ideally positioned to address the need, and are proposing a broad range of solutions to both operators and infrastructure providers.”</p>
+<p><br />
+Mr. Orbach continued, “This design win is a big step forward that will help us take advantage of the mobile opportunity. While this win by itself is only for one item within our 5G portfolio, representing only a small portion of the huge potential our 5G offering has within the mobile market, it demonstrates the unique value that we bring in all of our products for this market – value based on 1) our deep 5G system-level understanding; 2) our high Performance-to-Cost ratio; 3) our extremely close working relationship with Intel, which gives us the quickest possible time-to-market for the most innovative technologies; and, last but not least, 4) the close and intimate relationships we have built with most of the key players in the 5G space. With all these advantages in place, we feel confident that the mobile market in general, and especially the innovative solutions that we offer for ORAN and DU deployments, will become significant future growth drivers for Silicom.”</p>
+<p style="text-align: center;"><br />
+##</p>
+<p>&nbsp;</p>
+<p><strong>About Silicom</strong><br />
+Silicom Ltd. is an industry-leading provider of high-performance networking and data infrastructure solutions. Designed primarily to improve performance and efficiency in Cloud and Data Center environments, Silicom’s solutions increase throughput, decrease latency and boost the performance of servers and networking appliances, the infrastructure backbone that enables advanced Cloud architectures and leading technologies like NFV, SD-WAN and Cyber Security. Our innovative solutions for high-density networking, high-speed fabric switching, offloading and acceleration, which utilize a range of cutting-edge silicon technologies as well as FPGA-based solutions, are ideal for scaling-up and scaling-out cloud infrastructures.</p>
+<p>Silicom products are used by major Cloud players, service providers, telcos and OEMs as components of their infrastructure offerings, including both add-on adapters in the Data Center and stand-alone virtualized/universal CPE devices at the edge.</p>
+<p>Silicom’s long-term, trusted relationships with more than 170 customers throughout the world, its more than 400 active Design Wins and more than 300 product SKUs have made Silicom a “go-to” connectivity/performance partner of choice for technology leaders around the globe.</p>
+<p><br />
+For more information, please visit:<a href="http://www.silicom.co.il"> <strong><span style="color: #0f93d1;">www.silicom.co.il</span></strong></a></p>
+<p>Statements in this press release which are not historical data are forward-looking statements which involve known and unknown risks, uncertainties, or other factors not under the company's control, which may cause actual results, performance, or achievements of the company to be materially different from the results, performance, or other expectations implied by these forward-looking statements. These factors include, but are not limited to, Silicom's increasing dependence for substantial revenue growth on a limited number of customers in the evolving cloud-based, SD-WAN, NFV and Edge markets, the speed and extent to which solutions are adopted by these markets, likelihood that Silicom will rely increasingly on customers which provide solutions in these evolving markets, resulting in an increasing dependence on a smaller number of larger customers, difficulty in commercializing and marketing of Silicom's products and services, maintaining and protecting brand recognition, protection of intellectual property, competition, disruptions to our manufacturing and development along with general disruptions to the entire world economy relating to the spread of the novel coronavirus (COVID-19) and other factors detailed in the company's periodic filings with the Securities and Exchange Commission. These forward-looking statements can generally be identified as such because the context of the statement will include words, such as “expects,” “should,” “believes,” “anticipates” or words of similar import. Similarly, statements that describe future plans, objectives or goals are also forward-looking statements. In light of significant risks and uncertainties inherent in forward-looking statements, the inclusion of such statements should not be regarded as a representation by the company that it will achieve such forward-looking statements. The company disclaims any duty to update such statements, whether as a result of new information, future events, or otherwise.</p>
+<p>&nbsp;</p>
+<table style="height: 98px; width: 1070px;">
+<tbody>
+<tr>
+<td style="width: 528px;"><strong>Company Contact:</strong></td>
+<td style="width: 529px;"><strong>Investor Relations Contact:</strong></td>
+</tr>
+<tr>
+<td style="width: 528px;">Eran Gilad, CFO</td>
+<td style="width: 529px;">Ehud Helft</td>
+</tr>
+<tr>
+<td style="width: 528px;">Silicom Ltd.</td>
+<td style="width: 529px;">GK Investor Relations</td>
+</tr>
+<tr>
+<td style="width: 528px;"><strong>Tel:</strong> +972-9-764-4555</td>
+<td style="width: 529px;"><strong>Tel:</strong> +1 646 201 9246</td>
+</tr>
+<tr>
+<td style="width: 528px;"><strong>E-mail:</strong> <strong><span style="color: #0f93d1;"><a style="color: #0f93d1;" href="mailto:erang@silicom.co.il">erang@silicom.co.il</a></span></strong></td>
+<td style="width: 529px;"><strong>E-mail:</strong> <strong><span style="color: #0f93d1;"><a style="color: #0f93d1;" href="mailto:silicom@gkir.com">silicom@gkir.com</a></span></strong></td>
+</tr>
+</tbody>
+</table>

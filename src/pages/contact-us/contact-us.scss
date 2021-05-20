@@ -1,0 +1,14 @@
+page-contact-us {
+  .text {margin: 20px 0}
+  input.text-input-md{ /*, input.text-input-ios*/
+    width: calc(100% - 16px);
+  }
+  ion-item.item{
+    padding-right: 0px;
+  }
+  .item-md.item-input.input-has-focus .item-inner {
+     border-bottom-color: transparent;
+     -webkit-box-shadow: none;
+     box-shadow: none;
+  }
+}

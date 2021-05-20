@@ -1,0 +1,36 @@
+<!--
+  Generated template for the FullScreenProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>fullScreenProfile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content>
+  <div *ngIf="myId != user.id" class="profile-buttons">
+    <div (click)="toDialog()" class="message-profile-btn"><img src="assets/img/icons/pmsgbot.png"></div>
+    <div [ngClass]="{'disabled': user.isLike == '1' }" (click)="addLike()" class="like-profile-btn"><img
+            src="assets/img/icons/plike.png"></div>
+    <div *ngIf="user.isFav == '0' && user.id " (click)="addFavorites()"
+         class="favorite-profile-btn">
+      <img src="assets/img/icons/padd.png"></div>
+    <div *ngIf="user.isFav == '1'" (click)="addFavorites()" class="disable favorite-profile-btn"><img
+            src="assets/img/icons/fav-remove.png"></div>
+    <div *ngIf="api.videoShow" class="video-chat-btn" (click)="toVideoChat()">
+    </div>
+  </div>
+  <div class="close-warp" (click)="goBack()">
+    <div class="close"><img alt="close" src="assets/img/icons/psclose.png"></div>
+  </div>
+  <ion-slides initialSlide="{{i}}" [loop]="user.photos.length > 1">
+    <ion-slide *ngFor="let usr of user.photos">
+      <img src="{{ ((api.testingMode == true) ? ('https://www.zigzug.co.il/images/no_photo_' + user.gender + '.jpg') : api.siteUrl + usr?.url) }}">
+    </ion-slide>
+
+  </ion-slides>
+</ion-content>

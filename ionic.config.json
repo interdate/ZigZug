@@ -1,5 +1,13 @@
 {
   "name": "Zigzug-app",
-  "integrations": {},
-  "type": "ionic-angular"
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "proxies": [
+    {
+      "path": "/",
+      "proxyUrl": "https://www.zigzug.co.il"
+    }
+  ]
 }

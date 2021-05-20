@@ -1,0 +1,118 @@
+page-subscription {
+  h1, [padding] h1:first-child {
+    color: #d90012;
+    font-size: 22px !important;
+    font-weight: bold;
+    margin: 10px;
+    text-align: center;
+  }
+  .text-before, .text-after{
+    padding: 0 5px;
+    text-align: center;
+  }
+  .text-before ul, .text-after ul {
+    display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+  }
+  .text-before ul li, .text-after ul li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+  }
+
+  .paymentbox {
+    //background-image: url(https://www.zigzug.co.il/newpayment/product_bg.png);
+    //background-repeat: no-repeat;
+    //background-size: 100% 100%;
+    width: 100%;
+    min-height: 93px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    //background: #d4d5d7;
+    background: linear-gradient(#cacacc,#fdfdfd);
+    border: 5px #fff solid;
+    border-radius: 10px;
+    position: relative;
+  }
+
+  .paymentbox .cont {
+    padding: 10px 10px;
+  }
+  .total {
+    float: left;
+    width: 72px;
+    margin-right: 0px;
+    margin-left: -10px;
+    color: #ffffff;
+    direction: rtl;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: #f20022;
+    margin: 0;
+    border-radius: 5px 0 0px 5px;
+    padding: 20px 0 0;
+  }
+  .total h3 {
+    margin: 0px;
+    font-weight: normal;
+    font-size: 30px !important;
+    display: inline;
+    line-height: 15px;
+  }
+  .total h3 .nis {
+    font-size: 17px !important;
+    display: inline;
+  }
+  .total h3 span {
+    font-size: 15px !important;
+    font-weight: bold;
+  }
+  .total h3 span.margin{
+    margin: 0px -13px 0px -10px;
+  }
+  .paymentbox h2 {
+    color: #e9010e;
+    font-size: 17px !important;
+    font-weight: bold;
+    margin: 0px;
+    padding-left: 70px;
+  }
+  .paymentbox p {
+    margin: 6px 3px;
+    text-align: right;
+    font-size: 14px !important;
+    padding-left: 22%;
+    padding-left: 67px;
+  }
+  #get-discount {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    padding: 5px 0 15px;
+  }
+  #get-discount input {
+    padding: 4px;
+    border: 2px solid #ccc !important;
+    width: calc(100% - 5px);
+  }
+  #get-discount button {
+    color: #fff;
+    background-color: #f20022;
+    font-weight: bold;
+    border: 0;
+    cursor: pointer;
+    font-size: 18px !important;
+    font-family: 'Open Sans Hebrew', Arial, Helvetica, sans-serif;
+    padding: 0 20px;
+  }
+}
+html, html *{ zoom: 1 !important;}

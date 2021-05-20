@@ -1,0 +1,111 @@
+<!--
+  Generated template for the ChangePhotosPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>change-photos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <div class="stepnum">
+    <ul>
+      <li tappable (click)="getStep(1)"
+          class="rgt"><span>1</span>
+        <!--<p>{{ form?.text?.title1 }}</p>-->
+      </li>
+      <li tappable (click)="getStep(2)">
+        <span>2</span>
+        <!--<p>{{ form?.text?.title2 }}</p>-->
+      </li>
+      <li tappable (click)="getStep(3)" class="lft active">
+        <span>3</span>
+        <!--<p>{{ form?.text?.title3 }}</p>-->
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="photos?.length == 0" id="description" [innerHTML]="description">
+    <!--{{ setHtml('description') }}-->
+  </div>
+
+  <div class="photos">
+    <div *ngFor="let photo of photos">
+      <div *ngIf="photo.main == '1'" class="main photo"
+           tappable (click)="edit(photo)">
+        <div class="wrap">
+          <div class="photo-img"
+               [ngStyle]="{ 'background-image': 'url(' + api.siteUrl + photo.url + ')'}"></div>
+
+          <div class="remove">
+            <ion-icon name="create"></ion-icon>
+          </div>
+          <div class="status">{{ (photo.isValid == 1)?dataPage.texts.approved : dataPage.texts.waiting_for_approval }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngFor="let photo of photos">
+      <div *ngIf="photo.main != '1'" class="photo" tappable (click)="edit(photo)">
+        <div class="wrap">
+          <div class="photo-img"
+               [ngStyle]="{ 'background-image': 'url(' + api.siteUrl + photo.url + ')'}"></div>
+          <div class="remove">
+            <ion-icon name="create"></ion-icon>
+          </div>
+          <div class="status">{{ (photo.isValid == 1)?dataPage.texts.approved : dataPage.texts.waiting_for_approval }}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Photo little square-->
+    <div *ngIf="photos?.length > 0 && photos?.length < 4" class="photo" tappable (click)="add()">
+      <div class="wrap">
+        <div class="photo-img"
+             [ngStyle]="{ 'background-image': 'url(' + api.siteUrl + dataPage.images.noPhoto + ')'}"></div>
+        <span class="add"><ion-icon name="md-add"></ion-icon></span>
+      </div>
+    </div>
+
+    <!-- Add Photo Big square-->
+    <div *ngIf="photos?.length == 0" class="main photo"
+         tappable (click)="add()">
+      <div class="wrap">
+        <div class="photo-img"
+             [ngStyle]="{ 'background-image': 'url(' + api.siteUrl + dataPage.images.noPhoto + ')'}"></div>
+
+        <span class="add"><ion-icon name="md-add"></ion-icon></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hidden">
+    <form name='upimg' id="img_form1" method="post" action="uploadimg.php" enctype="multipart/form-data" accept-charset="UTF-8">
+      <input type="hidden" name="load" id="imgLoad" [(ngModel)]="imgLoad">
+      <input type="hidden" name="userId" value="{{ userId }}" />
+      <input type="hidden" name="act" value="getImg" />
+      <input type="file" id="fileLoader" #fileLoader name="file" title="Load File" hidden (change)="uploadPhotoInput(fileLoader)" accept="image/*" />
+      <input id='imgsub1' style='display: none;' type='submit' value='submit'/>
+    </form>
+  </div>
+
+  <div *ngIf="photos?.length > 0" id="description" [innerHTML]="description">
+    <!--{{ setHtml('description') }}-->
+  </div>
+
+  <div *ngIf="new_user" class="login-btn">
+    <button color="danger" tappable (click)=onHomePage() ion-button block>סיום הרשמה</button>
+  </div>
+  <div *ngIf="!new_user" class="login-btn">
+    <button color="danger" tappable (click)=onHomePage() ion-button block>סיום עריכה</button>
+  </div>
+  <div class="bottom"></div>
+</ion-content>
+<ion-footer>
+
+</ion-footer>

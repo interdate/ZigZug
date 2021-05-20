@@ -1,0 +1,50 @@
+page-search {
+  .item-ios.item-block .item-inner {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .bteween {
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    padding: 0 5.4%;
+    line-height: 29px;
+  }
+
+  .btn-search{
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .adv-search {
+    background: #ffffff;
+    color: #ff2b42;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+
+  .select-text {
+    margin-top: 16px;
+  }
+
+  .select-value{
+    padding: 10px 8px 13px 16px;
+    display: flex;
+    max-width: 45%;
+    background: none;
+    float: left;
+    font-size: 16px;
+    margin-top: 13px;
+  }
+
+  .select-value + ion-label{
+    font-size: 16px;
+    padding: 10px 10px 13px 0px;
+  }
+
+  .clr{
+    clear: both;
+  }
+}

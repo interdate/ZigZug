@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "561402157531",
+    "project_id": "zigzug-9830a",
+    "storage_bucket": "zigzug-9830a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:561402157531:android:0e7d07c15e43cca2f6effe",
+        "android_client_info": {
+          "package_name": "il.co.zigzug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "561402157531-r63khfg7kabrne5q7akjqv8v6ipma0a8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "il.co.zigzug",
+            "certificate_hash": "a0fdbb2d6a7f655b441e6eae9a04163ef8ff0a8a"
+          }
+        },
+        {
+          "client_id": "561402157531-42lfqubm6g1d0sl0e3ugp9hia53ml834.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsYpziy2SP_wBarraWQ3sx9OMiaMe1mG8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "561402157531-42lfqubm6g1d0sl0e3ugp9hia53ml834.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

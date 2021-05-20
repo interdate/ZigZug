@@ -1,0 +1,122 @@
+page-bingo {
+  #splashBingo {
+    position: fixed;
+    z-index: 10000;
+    width: 100%;
+    min-height: 100%;
+    background: rgba(0,0,0,0.8);
+    text-align: center;
+  }
+  .bingoImg {
+    margin: 60px auto 10px;
+    width: 60%;
+    max-width: 230px;
+  }
+  .clear {
+    clear: both;
+  }
+  .cancel {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 80px;
+    height: 80px;
+    background: url(../assets/img/popupclose.png) no-repeat center;
+    background-size: 60% 60%;
+  }
+
+  .imageBingo {
+    background-position: top center;
+    background-size: cover;
+    width: 105px;
+    height: 105px;
+    border: 5px #fff solid;
+    border-radius: 50%;
+    margin: 0px auto;
+  }
+
+  .rightPhoto {
+    width: 45%;
+    float: right;
+  }
+
+  .leftPhoto {
+    width: 45%;
+    float: left;
+  }
+
+  .plus {
+    float: right;
+    width: 11.5%;
+    height: 115px;
+    text-align: center;
+    background: url(../assets/img/plus.png) no-repeat center;
+    background-size: contain;
+    margin-right: -1.5%;
+  }
+
+  .textSplash {
+    color: #fff;
+    text-align: center;
+    font-size: 20px;
+    margin: 0 10px 20px;
+  }
+
+  .chat {
+    height: 45px;
+    width: 175px;
+    padding: 1px 10px;
+    margin: 7px auto 0px;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+    line-height: 37px;
+    //font-size: 16px;
+    background-image: url(../assets/img/chatSplash.png);
+    padding-left: 65px;
+    font-size: 0px;
+  }
+
+  .ignore {
+    background-image: url(../assets/img/ignoreSplash.png);
+    padding: 1px 20px 1px 45px;
+    height: 50px;
+    margin: 7px auto 0;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+    line-height: 2.6;
+    //font-size: 16px;
+    width: 175px;
+    font-size: 0px;
+  }
+
+  @media (max-width: 480px) {
+
+    .imageBingo {
+      width: 80px;
+      height: 80px;
+    }
+    .cancel {
+      width: 60px;
+      height: 60px;
+      top: 5px;
+      right: 5px;
+    }
+
+    .bingoImg {
+      margin: 40px auto 0;
+    }
+
+    .plus {
+      height: 70px;
+    }
+
+    .chat, .ignore {height:40px}
+
+  }
+}

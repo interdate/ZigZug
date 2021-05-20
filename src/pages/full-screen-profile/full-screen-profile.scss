@@ -1,0 +1,72 @@
+page-full-screen-profile {
+  .content-md, .content-ios {
+    background-color: #000;
+    direction: ltr;
+  }
+  .close {
+    width: 21px;
+    height: 21px;
+    right: 23px;
+    top: 20px;
+    position: absolute;
+    z-index: 9999;
+  }
+  .video-chat-btn{
+    background-image: url(../assets/img/video/v-chat.png);
+    background-position:  center;
+    background-repeat: no-repeat;
+    width: 49px;
+    height: 49px;
+    background-size: 100%;
+    margin-bottom: 5px;
+    background-color: rgba(233, 232, 229, 0.5);
+    border-radius: 50%;
+  }
+  .close-warp {
+    width: 60px;
+    height: 57px;
+    right: 23px;
+    top: 20px;
+    position: absolute;
+    z-index: 9999;
+  }
+
+  .profile-buttons .favorite-profile-btn,
+  .profile-buttons .like-profile-btn,
+  .profile-buttons .message-profile-btn {
+    background: rgba(233,232,229,0.5);
+    width: 49px;
+    height: 49px;
+    margin-bottom: 5px;
+    border-radius: 50%;
+  }
+
+  .profile-buttons .message-profile-btn {
+    border-radius: 50%;
+    border: 2px #eb1f26 solid;
+    overflow: hidden;
+  }
+
+  .profile-buttons .message-profile-btn img{
+    max-width: calc(100% + 4px);
+    margin: -2px;
+  }
+
+  .profile-buttons .disable.favorite-profile-btn {
+    border-radius: 50%;
+    opacity: 1;
+    background: none !important;
+    border: 1px solid #5b5b5b;
+    img {
+      width: 31px;
+      height: 31px;
+      margin: 0 auto;
+      margin-top: 11px;
+      display: block;
+    }
+  }
+
+  ion-slides, ion-slides *{
+    direction: ltr;
+  }
+}

@@ -1,0 +1,74 @@
+<!--
+  Generated template for the NotificationsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>notifications</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div padding><span [innerHTML]="texts?.description"></span></div>
+
+  <ion-segment  [(ngModel)]="tabs" color="secondary">
+    <ion-segment-button value="{{ like }}">
+      <img class="notifications" src="assets/img/icons/like-pink.png">
+    </ion-segment-button>
+    <ion-segment-button value="{{ bingo }}">
+      <img class="bingo" src="assets/img/bingo.png">
+    </ion-segment-button>
+  </ion-segment>
+  <div class="no_results" *ngIf="users?.length == 0">אין תוצאות</div>
+  <div [ngSwitch]="tabs">
+    <div *ngSwitchCase="like">
+      <div *ngFor="let user of users" >
+        <ion-card [ngClass]="{'grey': user?.isRead == 1 }" (click)=toDialog(user) *ngIf="user?.notificationId == '1'">
+          <ion-card-content>
+            <div class="usr_img" [ngStyle]="{ 'background-image': 'url(' + (api.testingMode ? ('https://www.zigzug.co.il/images/users/large/' + user?.gender + '.jpg') : api.siteUrl + user?.imageUrl) + ')'}"></div>
+            <ion-card-title>
+              <div class="name">{{user?.nickName}}</div>
+              <div class="date">{{user?.date}}</div>
+            </ion-card-title>
+            <p>
+              {{user?.template.replace('[UserNick]',user?.nickName)}}
+            </p>
+            <div *ngIf="user?.bingo == '1'" class="bingoimg"><img alt="bingo" src="assets/img/bingo.png"></div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+
+    </div>
+    <div *ngSwitchCase="bingo">
+      <div *ngFor="let user of users">
+        <ion-card [ngClass]="{'grey': user?.isRead == 1 }" (click)=toDialog(user) *ngIf="user?.notificationId == '2'">
+          <ion-card-content>
+            <div class="usr_img" [ngStyle]="{ 'background-image': 'url(' + (api.testingMode ? ('https://www.zigzug.co.il/images/users/large/' + user?.gender + '.jpg') : api.siteUrl + user?.imageUrl) + ')'}"></div>
+            <ion-card-title>
+              <div class="name">{{user?.nickName}}</div>
+              <div class="date">{{user?.date}}</div>
+            </ion-card-title>
+            <p>
+              {{user?.template.replace('[UserNick]',user?.nickName)}}
+            </p>
+            <div class="bingoimg"><img alt="bingo" src="assets/img/bingo.png"></div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+
+    </div>
+  </div>
+  <div class="bottom"></div>
+</ion-content>
+<ion-footer>
+
+  <ion-navbar>
+    <ion-title></ion-title>
+  </ion-navbar>
+
+</ion-footer>

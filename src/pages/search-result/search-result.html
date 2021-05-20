@@ -1,0 +1,60 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title></ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="has-header page-hello-ionic">
+  <div (click)="back()" class="back-btn">
+    <ion-icon name="ios-arrow-back"></ion-icon>
+  </div>
+  <ion-list>
+    <div *ngIf="users">
+    <div class="no_results" *ngIf="users?.length == 0">אין תוצאות</div>
+    <ion-card *ngFor="let user of users; let i = index" class="usr_profile" ion-item > <!--  *virtualItem="let user"-->
+      <div *ngIf="user.isPaing == '1'" class="king" ></div><!-- *ngIf="user.isPays == true" -->
+      <div class="user-section">
+        <div *ngIf="user.isOnline == '1'" class="online"></div>
+        <div *ngIf="user.isNew == '1'" class="new-user"></div>
+        <div *ngIf="user.isPaying == '1'" class="paying"></div>
+        <div *ngIf="user?.isApproved == '1'" class="approve"></div>
+        <div (click)="itemTapped(user)" [ngStyle]="{ 'background-image': 'url(' + (api.testingMode ? ('https://www.zigzug.co.il/images/users/large/' + user.userGender + '.jpg') : api.siteUrl + user.photo) + ')'}"
+             class="avatar"></div>
+
+        <!-- <div *ngIf="user.photo != '/images/no_photo_2.jpg' && user.photo != '/images/no_photo_1.jpg'" (click)="itemTapped(user)" [ngStyle]="{ 'background-image': 'url(' + user.photo + ')'}"
+             class="avatar"></div> -->
+        <div class="wrap">
+          <ion-card-title (click)="itemTapped(user)">
+            <div class="row">
+              <span class="name" [ngClass]="{'long-name': user.nickName?.length >= 12 }">{{user.nickName}},</span>
+
+              <span class="age">{{user.age}}</span>
+            </div>
+            <div class="row">
+              <span class="location" [ngClass]="{'long-city': user.area?.length>= 10 }">{{user.area }}</span>
+              <span class="distance">{{ user.distance }}</span>
+            </div>
+          </ion-card-title>
+
+          <div class="clr"></div>
+        </div>
+      </div>
+    </ion-card>
+    </div>
+  </ion-list>
+  <div *ngIf="loader == true || showLoader == true" class="loader"><img src="assets/img/loader.gif"></div>
+  <ion-infinite-scroll #scroll threshold="400px" (ionInfinite)="moreUsers($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <div class="bottom"></div>
+</ion-content>
+<!--<ion-footer>-->
+
+<!--  <ion-navbar>-->
+<!--    <ion-title></ion-title>-->
+<!--  </ion-navbar>-->
+
+<!--</ion-footer>-->
