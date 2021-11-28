@@ -1,0 +1,36 @@
+page-freeze {
+  textarea{
+      width: 100%;
+      margin: 3% 0;
+      border: 0;
+      border-radius:5px;
+      height: 120px;
+    padding: 5px 10px;
+  }
+
+  h1{
+    //padding: 5px;
+    //border-radius: 5px;
+    //border: 1px #e20020 solid;
+    color: #e20020;
+  }
+
+  h5{
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px #e20020 solid;
+  }
+
+  .ui.button{
+    background: #e20020;
+    height: 45px;
+    line-height: 42px;
+    color: #fff;
+    font-size: 20px;
+    padding: 0 40px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+  }
+}

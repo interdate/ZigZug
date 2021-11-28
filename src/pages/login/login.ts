@@ -53,6 +53,8 @@ export class LoginPage {
           if (username) {
             //this.form.login.username.value = username;
             this.user.name = username;
+          }else{
+            this.user.name = '';
           }
         });
 
@@ -118,6 +120,10 @@ export class LoginPage {
 
     articleRead(read){
       this.navCtrl.push(ArticlePage,{id:read.id});
+    }
+
+    articles(){
+      this.navCtrl.push(ArticlePage);
     }
 
     loginByFinger(){
@@ -351,13 +357,19 @@ export class LoginPage {
         } else if (response.status == "no_photo") {
             this.user.id = response.id;
 
-            let toast = this.toastCtrl.create({
-                message: response.texts.photoMessage,
-                showCloseButton: true,
-                closeButtonText: 'אישור'
+            // let toast = this.toastCtrl.create({
+            //     message: response.texts.photoMessage,
+            //     showCloseButton: true,
+            //     closeButtonText: 'אישור'
+            // });
+            // toast.present();
+            let alert = this.api.alertCtrl.create({
+              //title: 'הודעה פנימי',
+              message: response.texts.photoMessage,
+              buttons: ['אישור']
             });
+            alert.present();
 
-            toast.present();
             this.navCtrl.push('RegistrationPage', {
                 user: this.user,
                 username: this.form.login.username.value,

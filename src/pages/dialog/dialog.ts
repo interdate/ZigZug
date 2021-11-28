@@ -216,11 +216,11 @@ export class DialogPage {
                 this.messages.push({
                     id: 0,
                     date: '',
-                    from: userId,
+                    from: 0,
                     isRead: 0,
                     text: this.message,
                     time: '',
-                    to: this.user.id
+                    to: userId
                 });
                 this.scrollToBottom();
                 this.message = '';
@@ -231,14 +231,19 @@ export class DialogPage {
                     this.messages = res.chat.items;
                     this.alert = res.message;
                     if(this.alert != ""){
-                        let toast = this.toastCtrl.create({
-                            message: this.alert,
-                            duration: 5000
+                        // let toast = this.toastCtrl.create({
+                        //     message: this.alert,
+                        //     duration: 5000
+                        // });
+                        // toast.present();
+                        let alert = this.api.alertCtrl.create({
+                          //title: 'הודעה פנימי',
+                          message: this.alert,
+                          buttons: ['אישור']
                         });
-                        toast.present();
-                    }
-
-                    if(this.alert == "") {
+                        alert.present();
+                    }else{
+                      console.log('send push');
                         this.sendPush();
                     }
                     this.countNewMess = res.chat.newMess;

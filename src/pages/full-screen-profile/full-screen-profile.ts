@@ -56,15 +56,22 @@ export class FullScreenProfilePage {
         }
         if(mess == ''){
             //user.userId = user.id;
+            this.user.nickName = this.user.userNick;
             this.navCtrl.push(DialogPage, {
                 user: this.user
             });
         }else{
-            let toast = this.toastCtrl.create({
-                message: mess,
-                duration: 5000
+            // let toast = this.toastCtrl.create({
+            //     message: mess,
+            //     duration: 5000
+            // });
+            // toast.present();
+            let alert = this.api.alertCtrl.create({
+              //title: 'הודעה פנימי',
+              message: mess,
+              buttons: ['אישור']
             });
-            toast.present();
+            alert.present();
         }
     }
 
@@ -88,24 +95,34 @@ export class FullScreenProfilePage {
 
         this.api.http.post(this.api.url + '/user/managelists/favi/' + act + '/' + this.user.id, params, this.api.setHeaders(true)).subscribe(data => {
             let res:any = data;
-            let toast = this.toastCtrl.create({
-                message: res.success,
-                duration: 3000
+            // let toast = this.toastCtrl.create({
+            //     message: res.success,
+            //     duration: 3000
+            // });
+            // toast.present();
+            let alert = this.api.alertCtrl.create({
+              //title: 'הודעה פנימי',
+              message: res.success,
+              buttons: ['אישור']
             });
-
-            toast.present();
+            alert.present();
         });
     }
 
     addLike() {
         if(this.user.isLike == '0') {
             this.user.isLike = '1';
-            let toast = this.toastCtrl.create({
-                message: ' עשית לייק ל' + this.user.userNick,
-                duration: 2000
+            // let toast = this.toastCtrl.create({
+            //     message: ' עשית לייק ל' + this.user.userNick,
+            //     duration: 2000
+            // });
+            // toast.present();
+            let alert = this.api.alertCtrl.create({
+              //title: 'הודעה פנימי',
+              message: 'עשית לייק ל ' + this.user.userNick,
+              buttons: ['אישור']
             });
-
-            toast.present();
+            alert.present();
 
             let params = JSON.stringify({
                 toUser: this.user.id,

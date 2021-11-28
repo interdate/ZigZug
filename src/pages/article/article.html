@@ -14,9 +14,23 @@
 
 
 <ion-content padding>
-
+<div *ngIf="article">
   <h1>{{ article?.pageTitle }}</h1>
   <div id="content"></div>
 
   <div class="bottom"></div>
+</div>
+    <div class="articles" *ngIf="articles.length > 0">
+      <h2 class="title">מגזין חילופי זוגות</h2>
+      <div class="container">
+        <div class="reads">
+          <div class="read" *ngFor="let read of articles; let i = index" (click)="articleRead(read)">
+            <div *ngIf="read.img" class="read-img" [ngStyle]="{ 'background-image': 'url(' + read.img + ')'}"></div>
+            <h3 class="title">{{read.title}}</h3>
+            <div class="text">{{read.text}}</div>
+            <div class="more">{{ read.button }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
 </ion-content>

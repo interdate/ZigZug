@@ -36,6 +36,8 @@ import {ActivationPage} from "../pages/activation/activation";
 import {Page} from "../pages/page/page";
 import {FullScreenProfilePage} from "../pages/full-screen-profile/full-screen-profile";
 import {AdvancedSearchPage} from "../pages/advanced-search/advanced-search";
+import set = Reflect.set;
+import {FreezePage} from "../pages/freeze/freeze";
 
 
 @Component({
@@ -89,7 +91,23 @@ export class MyApp {
     //alert(pushMess.currentToken);
     //this.browserPush.disableNotifications();
     //this.browserPush.enableNotifications();
+    this.events.subscribe('statistics:updated', () => {
+      // user and time are the same arguments passed in `events.publish(user, time)`
+      this.getStatistics();
+    });
 
+    this.events.subscribe('page:payment', () => {
+      // user and time are the same arguments passed in `events.publish(user, time)`
+      // let stat = this.api.status;
+      if(this.api.pageName != 'SubscriptionPage') {
+        // let that = this;
+        // this.api.notCheckStatus = true;
+        this.nav.push(SubscriptionPage);
+        // setTimeout(function () {
+        //   that.api.notCheckStatus = false;
+        // }, 5000);
+      }
+    });
 
     this.api.storage.get('fingerAIO').then((val:any)=>{
       //alert(JSON.stringify(val));
@@ -113,10 +131,13 @@ export class MyApp {
           if (!val) {
             if(this.api.pageName == 'RegisterPage'){
               this.rootPage = RegisterPage;
+            }else if(this.api.pageName == 'SubscriptionPage'){
+              this.rootPage = SubscriptionPage;
             }else {
               this.rootPage = LoginPage;
             }
             this.menu_items = this.menu_items_logout;
+
           } else {
             this.api.password = val.password;
             this.api.myId = val.user_id;
@@ -220,6 +241,11 @@ export class MyApp {
           },
           err => {this.requestPermit();}
         );
+        // let that = this;
+        // setTimeout(function () {
+        //   that.nav.push(that.rootPage);
+        // },500);
+
       }
     });
   }
@@ -282,7 +308,6 @@ export class MyApp {
             this.api.userIsPaying = val.userIsPaying = resp.userIsPaying;
             this.api.textMess = val.textMess = data.texts;
             this.api.storage.set('user_data', val);
-
             this.checkStatus();
           }
 
@@ -362,7 +387,7 @@ export class MyApp {
       {_id: 'the_area', icon: '', title: menu.the_arena, component: ArenaPage, count: ''},
       {_id: 'notifications', icon: '', title: menu.notifications, component: NotificationsPage, count: ''},
       {_id: 'stats', icon: 'stats', title: menu.contacts, component: ProfilePage, count: ''},
-      {_id: 'search', icon: '', title: menu.search, component: SearchPage, count: ''},
+      {_id: 'search', icon: 'search', title: menu.search, component: SearchPage, count: ''},
       {_id: '', icon: 'information-circle', title: 'שאלות נפוצות', component: FaqPage, count: ''},
     ];
 
@@ -372,7 +397,7 @@ export class MyApp {
       {_id: 'notifications', icon: '', title: menu.notifications, component: NotificationsPage, count: ''},
       {_id: 'stats', icon: 'stats', title: menu.contacts, component: ProfilePage, count: ''},
       {_id: 'freeToday', src_img: 'assets/img/free_today.png', icon: '', title: menu.freeToday, list: 'freeToday', component: HomePage, count: ''},
-      {_id: 'search', icon: '', title: menu.search, component: SearchPage, count: ''},
+      {_id: 'search', icon: 'search', title: menu.search, component: SearchPage, count: ''},
       {_id: '', icon: 'information-circle', title: 'שאלות נפוצות', component: FaqPage, count: ''},
       {_id: '', icon: 'mail', title: menu.contact_us, component: ContactUsPage, count: ''},
       {_id: 'subscribe', icon: 'ribbon', title: 'רכישת מנוי', component: SubscriptionPage, count: ''},
@@ -384,6 +409,7 @@ export class MyApp {
       {_id: 'edit_photos', icon: '', title: menu.edit_photos, component: ChangePhotosPage, count: ''},
       {_id: '', icon: 'person', title: menu.view_my_profile, component: ProfilePage, count: ''},
       {_id: 'change_password', icon: '', title: menu.change_password, component: ChangePasswordPage, count: ''},
+      {_id: 'freeze_account', icon: '', title: menu.freeze_account, component: FreezePage, count: ''},
       {_id: 'settings', icon: '', title: menu.settings, component: SettingsPage, count: ''},
       {_id: '', icon: 'mail', title: menu.contact_us, component: ContactUsPage, count: ''},
       {_id: 'logout', icon: 'log-out', title: menu.log_out, component: LoginPage, count: ''}
@@ -480,7 +506,7 @@ export class MyApp {
         src_img: 'assets/img/icons/favorited.png',
         icon: '',
         list: 'favorited',
-        title: menu.favorited,
+        title: 'מועדפים',
         component: HomePage,
         count: ''
       },
@@ -494,7 +520,7 @@ export class MyApp {
         count: ''
       },
 
-      {_id: '', src_img: 'assets/img/icons/search.png', icon: '', title: menu.search, list: '', component: SearchPage, count: ''},
+      {_id: '', src_img: '', icon: 'search', title: menu.search, list: '', component: SearchPage, count: ''},/*assets/img/icons/search.png*/
       {_id: '', src_img: 'assets/img/free_today.png', icon: '', title: menu.freeToday, list: 'freeToday', component: HomePage, count: ''},
     ];
   }
@@ -575,6 +601,7 @@ export class MyApp {
 
     const options: PushOptions = {
       android: {
+        clearNotifications: false,
         senderID: '561402157531'
       },
       ios: {
@@ -660,7 +687,7 @@ export class MyApp {
         this.nav.push(DialogPage, {
           user: {
             userId: data.additionalData.userId,
-            userNick: data.additionalData.userNick
+            nickName: data.additionalData.userNick
           }
         });
       }
@@ -758,14 +785,20 @@ export class MyApp {
       case 'SubscriptionPage':
         page = SubscriptionPage;
         break;
+      case 'FreezePage':
+        page = FreezePage;
+        break;
     }
     return page;
   }
 
   getBanner() {
-    this.api.http.get(this.api.url + '/user/banner', this.api.header).subscribe(data => {
+    this.api.http.get(this.api.url + '/user/banner?u=test', this.api.header).subscribe(data => {
       let resp:any = data;
       this.banner = resp;
+      if(this.api.pageName == 'LoginPage'){
+        $('.banner').css({'bottom':'3px'});
+      }
     });
   }
 
@@ -837,7 +870,7 @@ export class MyApp {
           filter: 'new',
           list: '',
           page: 1,
-          usersCount: 15,
+          usersCount: 20,
           searchparams: {region: '', agefrom: 0, ageto: 0, userNick: '', freeToday: 1}
         });
       } else if (page._id == 'subscribe') {
@@ -1004,27 +1037,34 @@ export class MyApp {
 
   checkStatus() {
     console.log(this.api.status);
-    if(this.api.pageName != 'ArticlePage' && this.api.pageName != 'SearchResultsPage' && this.api.pageName != 'ContactUsPage' && this.api.pageName != 'RegisterPage' && this.api.pageName != 'PagePage'&& this.api.pageName != 'TermsPage' && this.api.pageName != 'PasswordRecoveryPage' && this.api.pageName != 'FaqPage') {
-      if(this.api.status == 'not_activated' && this.api.pageName != 'ActivationPage' && this.api.pageName != 'LoginPage' && this.api.pageName != 'PasswordRecoveryPage' && this.api.pageName != 'ChangePasswordPage'
-        && this.api.pageName != 'ChangePhotosPage') {
-        // this.nav.push(LoginPage, {'redirect': 1});
-        this.nav.push(ActivationPage);
-      } else if(this.api.status == 'toPay' && this.api.pageName != 'SubscriptionPage' && this.api.pageName != 'ChangePhotosPage') {
-        this.nav.setRoot(SubscriptionPage);
-        this.nav.popToRoot();
-      } else if(this.api.status == '' && this.api.pageName != 'LoginPage' && this.api.pageName != 'RegisterPage' && this.api.pageName != 'PasswordRecoveryPage') {
-        this.nav.setRoot(LoginPage);
-        this.nav.popToRoot();
-      } else if(this.api.status == 'login' && this.api.pageName == 'SubscriptionPage' && this.api.userIsPaying == 1) {
-        this.nav.setRoot(HomePage);
-        this.nav.popToRoot();
-      } else if(this.api.pageName == 'LoginPage' && this.status == 'login') {
-        this.nav.push(HomePage);
+    console.log(this.api.notCheckStatus);
+    // let check = (this.api.status == 'login' && this.api.pageName == 'SubscriptionPage' && !this.api.userIsPaying);
+    if(this.api.notCheckStatus === false) {
+      if (this.api.pageName != 'ArticlePage' && this.api.pageName != 'SearchResultsPage' && this.api.pageName != 'ContactUsPage' && this.api.pageName != 'RegisterPage' && this.api.pageName != 'PagePage' && this.api.pageName != 'TermsPage' && this.api.pageName != 'PasswordRecoveryPage' && this.api.pageName != 'FaqPage') {
+        if (this.api.status == 'not_activated' && this.api.pageName != 'ActivationPage' && this.api.pageName != 'LoginPage' && this.api.pageName != 'PasswordRecoveryPage' && this.api.pageName != 'ChangePasswordPage'
+          && this.api.pageName != 'ChangePhotosPage') {
+          // this.nav.push(LoginPage, {'redirect': 1});
+          this.nav.push(ActivationPage);
+        } else if (this.api.status == 'toPay' && this.api.pageName != 'SubscriptionPage' && this.api.pageName != 'ChangePhotosPage') {
+          this.nav.setRoot(SubscriptionPage);
+          this.nav.popToRoot();
+        } else if (this.api.status == '' && this.api.pageName != 'LoginPage' && this.api.pageName != 'RegisterPage' && this.api.pageName != 'PasswordRecoveryPage' && (!this.api.password || this.api.password == '')) {
+          this.nav.setRoot(LoginPage);
+          this.nav.popToRoot();
+        } else if (this.api.status == 'login' && this.api.pageName == 'SubscriptionPage' && (this.api.userIsPaying == 1 || this.api.userIsPaying == true)) {
+          this.nav.setRoot(HomePage);
+          this.nav.popToRoot();
+        } else if (this.api.status == 'login' && this.api.pageName == 'SubscriptionPage' && !this.api.userIsPaying) {
+          console.log(123);
+        } else if (this.api.pageName == 'LoginPage' && this.status == 'login') {
+          this.nav.push(HomePage);
+        }
       }
-    }
-    if (this.api.pageName == 'ActivationPage' && this.api.status == 'login') {
-      this.nav.push(HomePage);
-      this.api.hideLoad();
+
+      if (this.api.pageName == 'ActivationPage' && this.api.status == 'login') {
+        this.nav.push(HomePage);
+        this.api.hideLoad();
+      }
     }
   }
 
@@ -1048,13 +1088,6 @@ export class MyApp {
           that.getStatistics();
         }
       }, 10000);
-
-      this.events.subscribe('statistics:updated', () => {
-        // user and time are the same arguments passed in `events.publish(user, time)`
-        this.getStatistics();
-      });
-
-
 
       if (this.api.pageName == 'DialogPage') {
         $('.footerMenu').hide();
@@ -1090,7 +1123,9 @@ export class MyApp {
         this.api.status = (!val) ? false : val.status;
         this.api.userIsPaying = (!val) ? false : val.userIsPaying;
         this.api.textMess = (!val) ? false : val.textMess;
+
         this.checkStatus();
+
         if (!val) {
           this.menu_items = this.menu_items_logout;
           this.is_login = false;

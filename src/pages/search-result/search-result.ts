@@ -47,7 +47,7 @@ export class SearchResultPage {
   }
 
   getUsers(){
-    this.api.http.post(this.api.siteUrl + '/app_dev.php/open_api/users/search/', this.params, this.api.setHeaders(false)).subscribe(data => {
+    this.api.http.post(this.api.siteUrl + '/open_api/users/search/', this.params, this.api.setHeaders(false)).subscribe(data => {
       let res: any = data;
       this.api.hideLoad();
       this.users = res.users;
@@ -86,7 +86,7 @@ export class SearchResultPage {
       this.params.page = this.page_counter;
       // this.params_str = JSON.stringify(this.params);
 
-      this.api.http.post(this.api.siteUrl + '/app_dev.php/open_api/users/search/', this.params, this.api.setHeaders(false)).subscribe(data => {
+      this.api.http.post(this.api.siteUrl + '/open_api/users/search/', this.params, this.api.setHeaders(false)).subscribe(data => {
         let res: any = data;
         this.api.hideLoad();
         if (res.users.length == res.usersCount) {

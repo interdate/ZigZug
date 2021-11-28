@@ -288,6 +288,13 @@ page-login {
       font-size: 0.8em;
     }
   }
+
+  .login-form input{
+    margin: 8px 5px;
+    width: calc(100% - 10px);
+    padding: 10px 8px;
+  }
+  input.usern{margin-bottom: 0px;}
 }
 
 .ios page-login .bg-image {

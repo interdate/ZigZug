@@ -88,12 +88,18 @@ export class ContactUsPage {
             this.form.form.text.value = "";
             this.form.form.subject.value = "";
 
-            const toast = this.toastCtrl.create({
-                message: 'ההודעה נשלחה בהצלחה',
-                showCloseButton: true,
-                closeButtonText: 'אישור'
+            // const toast = this.toastCtrl.create({
+            //     message: 'ההודעה נשלחה בהצלחה',
+            //     showCloseButton: true,
+            //     closeButtonText: 'אישור'
+            // });
+            // toast.present();
+            let alert = this.api.alertCtrl.create({
+              //title: 'הודעה פנימי',
+              message: 'ההודעה נשלחה בהצלחה',
+              buttons: ['אישור']
             });
-            toast.present();
+            alert.present();
         }else{
             this.allfields = 'יש למלא את כל השדות';
         }

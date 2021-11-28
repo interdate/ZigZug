@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import {
-  AlertController, LoadingController, ModalController, Platform, ToastController
+  AlertController, LoadingController, ModalController, Platform, ToastController, Events
 } from "ionic-angular";
 
 import { DomSanitizer } from "@angular/platform-browser";
@@ -47,7 +47,7 @@ export class ApiProvider {
     public notActivateAlert: any = false;
     public faioData: any;
     public browserToken: any;
-    public appVersion: any = 11;
+    public appVersion: any = 12;
     public callAlertShow:any = false;
     public videoChat: any = null;
     public videoTimer: any = null;
@@ -57,6 +57,8 @@ export class ApiProvider {
     public videoShow: any = true;
     //public isAndroid: any = false;
     public transferStart: any = false;
+    public notCheckStatus: any = false;
+    public filter: any = '';
 
     constructor(
         public storage: Storage,
@@ -69,7 +71,8 @@ export class ApiProvider {
         public plt: Platform,
         public modalCtrl: ModalController,
         public fingerAIO: FingerprintAIO,
-        public iab: InAppBrowser
+        public iab: InAppBrowser,
+        public events: Events
     ) {
         //this.url = 'http://localhost:8103';
         //this.url = 'http://10.0.0.7:8100';
@@ -77,7 +80,7 @@ export class ApiProvider {
         //this.url = 'https://newzigzug1.wee.co.il/api/v2';
         //this.siteUrl = 'https://newzigzug2.wee.co.il';
         this.siteUrl = 'https://www.zigzug.co.il';
-        //this.siteUrl = 'http://localhost:8100/app_dev.php';
+        //this.siteUrl = 'http://localhost:8102';
         this.url = this.siteUrl + '/api/v2';
         //this.testingMode = true;
       // export JAVA_HOME=`/usr/libexec/java_home -v 1.8.0_221`
@@ -96,13 +99,43 @@ export class ApiProvider {
         console.log('init');
         console.log(res);
         if(res.error != '') {
-          let toast = this.toastCtrl.create({
-            message: res.error,
-            showCloseButton: true,
-            closeButtonText: 'אישור'
-          });
+          // let toast = this.toastCtrl.create({
+          //   message: res.error,
+          //   showCloseButton: true,
+          //   closeButtonText: 'אישור'
+          // });
+          // toast.present();
+          let alert:any;
+          if(res.error.indexOf("לרכישה מנוי לחצו כאן") == '-1') {
+            alert = this.alertCtrl.create({
+              //title: 'הודעה פנימי',
+              message: res.error,
+              buttons: ['אישור']
+            });
+          }else{
+            alert = this.alertCtrl.create({
+              //title: 'הודעה פנימי',
+              message: res.error,
+              buttons: [
+                {
+                  text: 'אישור',
+                  role: 'cancel',
+                  handler: () => {
+                    this.events.publish('page:payment');
+                  }
+                },
+                {
+                  text: 'לרכישה מנוי',
+                  handler: () => {
+                    this.events.publish('page:payment');
+                  }
+                }
+              ]
+            });
 
-          toast.present();
+          }
+
+          alert.present();
         } else {
           // /user/call/push/
           if(res.call.sendPush) {
@@ -121,7 +154,7 @@ export class ApiProvider {
           closeButton.style.height = '40px';
           closeButton.style['font-size'] = '0px';
           closeButton.style['text-align'] = 'center';
-          closeButton.style.background = 'url(https://m.zigzug.co.il/assets/img/video/buzi_b.png) no-repeat center';
+          closeButton.style.background = 'url(https://www.zigzug.co.il/assets/img/video/buzi_b.png) no-repeat center';
           closeButton.style['background-size'] = '100%';
           closeButton.style.position = 'absolute';
           closeButton.style.bottom = '10px';
@@ -138,7 +171,7 @@ export class ApiProvider {
 
           this.videoChat = document.createElement('iframe');
           this.videoChat.setAttribute('id', 'video-iframe');
-          this.videoChat.setAttribute('src', 'https://newzigzug1.wee.co.il/video.html?id='+data.user_id+'&to='+param.id);
+          this.videoChat.setAttribute('src', 'https://www.zigzug.co.il/video.html?id='+data.user_id+'&to='+param.id);
           this.videoChat.setAttribute('allow','camera; microphone');
           this.videoChat.style.position = 'absolute';
           this.videoChat.style.top = '0';
@@ -201,13 +234,18 @@ export class ApiProvider {
 
         this.stopAudio();
         if (this.videoChat != null || this.callAlert != null) {
-
-          let toast = this.toastCtrl.create({
+          // let toast = this.toastCtrl.create({
+          //   message: (this.status == 'not_answer' && this.videoChat && this.videoChat != null) ? ('השיחה עם ' + param.username + ' נדחתה') : 'השיחה הסתיימה',
+          //   showCloseButton: true,
+          //   closeButtonText: 'אישור'
+          // });
+          // toast.present();
+          let alert = this.alertCtrl.create({
+            //title: 'הודעה פנימי',
             message: (this.status == 'not_answer' && this.videoChat && this.videoChat != null) ? ('השיחה עם ' + param.username + ' נדחתה') : 'השיחה הסתיימה',
-            showCloseButton: true,
-            closeButtonText: 'אישור'
+            buttons: ['אישור']
           });
-          toast.present();
+          alert.present();
         }
         if(this.callAlert && this.callAlert != null) {
           this.callAlert.dismiss();

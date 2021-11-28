@@ -2,4 +2,52 @@ page-article {
   #content{
     padding-bottom: 30px;
   }
+
+  .articles{
+    width: 110%;
+    margin: 0 -5%;
+    padding: 10px;
+    background-color: #e9e9ea;
+    text-align: center;
+    font-family: "Myriad Hebrew";
+  }
+
+  .articles h2.title{
+    font-size: 28px;
+  }
+
+  .reads .read .read-img{
+    width: 180px;
+    height: 180px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    margin: 0 auto 5px;
+  }
+
+  .reads .read h3.title{
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .reads .read .text{
+    color: #929396;
+    font-size: 13px;
+    margin: 0 auto 5px;
+    max-height: 32px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .reads .read .more{
+    color: #fd2432;
+    margin: 0 auto 25px;
+    font-size: 16px;
+    padding-left: 20px;
+    background-image: url(../assets/img/left-icon.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 16px;
+    width: 136px;
+  }
 }

@@ -114,7 +114,7 @@
           <ion-icon class="left-arrow" name="md-arrow-dropright"></ion-icon>
           <ion-icon class="right-arrow" name="md-arrow-dropleft"></ion-icon>
         </li>
-        <li class="{{menu_item_footer1._id}}" *ngFor="let menu_item_footer1 of menu_items_footer1"
+        <li class="{{menu_item_footer1._id}}" *ngFor="let menu_item_footer1 of menu_items_footer1" [ngClass]="{'active': menu_item_footer1.component == getPageByStr(api.pageName) && (menu_item_footer1.list == '' || menu_item_footer1.list == api.filter)}"
             (click)="openPage(menu_item_footer1)"><span
           *ngIf="is_login && menu_item_footer1?.count && menu_item_footer1.count != 0 " class="inbox_count" [ngClass]="{'fs10': menu_item_footer1.count > 99 }">{{ menu_item_footer1.count }}</span>
           <ion-icon name="{{menu_item_footer1.icon}}"></ion-icon>
@@ -122,7 +122,7 @@
         </li>
       </ul>
       <ul class="menu-two">
-        <li *ngFor="let menu_item_footer2 of menu_items_footer2; let i = index"
+        <li *ngFor="let menu_item_footer2 of menu_items_footer2; let i = index" [ngClass]="{'active': menu_item_footer2.component == getPageByStr(api.pageName) && (menu_item_footer2.list == '' || menu_item_footer2.list == api.filter)}"
             (click)="openPage(menu_item_footer2)" [ngClass]="{'search-width': i == 2 }" class="li{{i}}">
           <ion-icon name="{{menu_item_footer2.icon}}"></ion-icon>
           <span *ngIf="is_login && menu_item_footer2?.count && menu_item_footer2.count != 0" class="inbox_count" [ngClass]="{'fs10': menu_item_footer2.count > 99 }">{{ menu_item_footer2.count }}</span>

@@ -48,12 +48,17 @@ export class SettingsPage {
     }
 
     presentToast() {
-        let toast = this.toastCtrl.create({
-            message: 'נשמר',
-            duration: 3000
+        // let toast = this.toastCtrl.create({
+        //     message: 'נשמר',
+        //     duration: 3000
+        // });
+        // toast.present();
+        let alert = this.api.alertCtrl.create({
+          //title: 'הודעה פנימי',
+          message: 'נשמר',
+          buttons: ['אישור']
         });
-
-        toast.present();
+        alert.present();
     }
 
     submit(type) {

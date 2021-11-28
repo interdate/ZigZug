@@ -64,6 +64,7 @@ export class ChangePasswordPage {
             this.api.storage.get('user_data').then((val) => {
                 val.password = this.form.form.password.first.value;
                 this.api.storage.set('user_data', val);
+                this.api.setHeaders(true, val.username, this.form.form.password.first.value);
             });
             //this.api.storage.set('password', this.form.form.password.first.value);
 
@@ -82,13 +83,18 @@ export class ChangePasswordPage {
             this.api.storage.remove('disableFingerAuthInit');
             this.api.storage.remove('fingerAuthLogin');
 
-            const toast = this.toastCtrl.create({
-                message: response.texts.success,
-                showCloseButton: true,
-                closeButtonText: 'אישור'
+            // const toast = this.toastCtrl.create({
+            //     message: response.texts.success,
+            //     showCloseButton: true,
+            //     closeButtonText: 'אישור'
+            // });
+            // toast.present();
+            let alert = this.api.alertCtrl.create({
+              //title: 'הודעה פנימי',
+              message: response.texts.success,
+              buttons: ['אישור']
             });
-            toast.present();
-
+            alert.present();
         }
         else{
             this.oldPassword = response.error.oldPassword;

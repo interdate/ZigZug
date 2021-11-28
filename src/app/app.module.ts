@@ -59,6 +59,8 @@ import {SearchPage} from "../pages/search/search";
 import {LoginPage} from "../pages/login/login";
 import {NotificationsPage} from "../pages/notifications/notifications";
 import {SearchResultPage} from "../pages/search-result/search-result";
+import {FreezePageModule} from "../pages/freeze/freeze.module";
+import {FreezePage} from "../pages/freeze/freeze";
 //import {KeyboardOriginal} from "@ionic-native/keyboard";
 
 @NgModule({
@@ -98,7 +100,8 @@ import {SearchResultPage} from "../pages/search-result/search-result";
         {component: SearchPage, name: 'חיפוש', segment: 'search', defaultHistory: [HomePage]},
         {component: LoginPage, name: 'כניסה', segment: 'login', defaultHistory: [HomePage]},
         {component: NotificationsPage, name: 'התיבה שלי', segment: 'notifications', defaultHistory: [HomePage]},
-        {component: SearchResultPage, name: 'תוצאות חיפוש', segment: 'page-search-result/:gender/:ageFrom/:ageTo', defaultHistory: [HomePage]}
+        {component: SearchResultPage, name: 'תוצאות חיפוש', segment: 'page-search-result/:gender/:ageFrom/:ageTo', defaultHistory: [HomePage]},
+        {component: FreezePage, name: 'הקפאת חשבון', segment: 'freeze', defaultHistory: [HomePage]}
       ]
     }),
     IonicStorageModule.forRoot(),
@@ -123,7 +126,8 @@ import {SearchResultPage} from "../pages/search-result/search-result";
     SubscriptionPageModule,
     DialogPageModule,
     ArticlePageModule,
-    SearchResultPageModule
+    SearchResultPageModule,
+    FreezePageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

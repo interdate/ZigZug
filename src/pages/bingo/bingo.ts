@@ -41,11 +41,17 @@ export class BingoPage {
             this.data.user.id = this.data.user.userId;
             this.navCtrl.push(DialogPage,{ user: this.data.user });
         }else{
-            let toast = this.toastCtrl.create({
-                message: mess,
-                duration: 5000
+            // let toast = this.toastCtrl.create({
+            //     message: mess,
+            //     duration: 5000
+            // });
+            // toast.present();
+            let alert = this.api.alertCtrl.create({
+              //title: 'הודעה פנימי',
+              message: mess,
+              buttons: ['אישור']
             });
-            toast.present();
+            alert.present();
         }
 
     }

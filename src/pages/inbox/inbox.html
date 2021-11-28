@@ -15,8 +15,8 @@
 
 <ion-content padding>
   <div class="no_results" *ngIf="users && users?.length == 0">{{ textMess?.no_results }}</div>
-  <div [virtualScroll]="users" [approxItemHeight]="'140px'" [approxItemWidth]="'calc(100% - 20px)'" [bufferRatio]="2">
-    <ion-card *virtualItem="let user" tappable (click)="toDialogPage(user)">
+  <div>
+    <ion-card *ngFor="let user of users; let idx = index" tappable (click)="toDialogPage(idx)">
       <ion-card-content [ngClass]="{'highlight': user.user.userId==='468385291'}">
         <div class="usr_img" *ngIf="user.user.mainImage" [ngStyle]="{ 'background-image': 'url('  + (api.testingMode ? ('https://www.zigzug.co.il/images/users/large/' + user.user.userGender + '.jpg') : api.siteUrl  + user.user.mainImage?.url) + ')'}" ></div>
         <div class="usr_img" *ngIf="user.user.noPhoto" [ngStyle]="{ 'background-image': 'url(' + (api.testingMode ? ('https://www.zigzug.co.il/images/users/large/' + user.user.userGender + '.jpg') : (api.siteUrl  + user.user.noPhoto)) + ')'}" ></div>
@@ -32,6 +32,7 @@
         </div>
       </ion-card-content>
     </ion-card>
+    <div class="clear"></div>
   </div>
   <div class="bottom"></div>
 </ion-content>

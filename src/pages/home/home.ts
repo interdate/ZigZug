@@ -7,6 +7,7 @@ import * as $ from 'jquery';
 import {LoginPage} from "../login/login";
 import {Push} from "@ionic-native/push";
 import {ActivationPage} from "../activation/activation";
+import {SubscriptionPage} from "../subscription/subscription";
 
 
 @Component({
@@ -56,6 +57,7 @@ export class HomePage {
         public api: ApiProvider,
         public events: Events
     ) {
+        this.api.filter = 'online';
         this.api.audioCall = new Audio();
         this.api.audioCall.src = 'https://www.zigzug.co.il/phone_ringing.mp3';
         this.api.audioCall.loop = true;
@@ -120,6 +122,17 @@ export class HomePage {
             }
         });
 
+
+        if(this.params.action == 'online' && this.params.filter == 'distance'){
+          this.api.filter = 'distance';
+        }else if(this.params.action == 'search' && this.params.searchparams.freeToday == 1){
+          this.api.filter = 'freeToday';
+        }else if(this.params.list == ''){
+          this.api.filter = this.params.action;
+        }else{
+          this.api.filter = this.params.list;
+        }
+        console.log(this.api.filter);
     }
 
     trackByFn(index: number, item: any): any {
@@ -160,11 +173,17 @@ export class HomePage {
                     user: user
                 });
             }else{
-                let toast = this.toastCtrl.create({
-                    message: mess,
-                    duration: 5000
+                // let toast = this.toastCtrl.create({
+                //     message: mess,
+                //     duration: 5000
+                // });
+                // toast.present();
+                let alert = this.api.alertCtrl.create({
+                  //title: 'הודעה פנימי',
+                  message: mess,
+                  buttons: ['אישור']
                 });
-                toast.present();
+                alert.present();
             }
         }
     }
@@ -175,12 +194,17 @@ export class HomePage {
 
             this.users[index].isLike = '1';
 
-            let toast = this.toastCtrl.create({
-                message: ' עשית לייק ל' + user.nickName,
-                duration: 5000
+            // let toast = this.toastCtrl.create({
+            //     message: ' עשית לייק ל' + user.nickName,
+            //     duration: 5000
+            // });
+            // toast.present();
+            let alert = this.api.alertCtrl.create({
+              //title: 'הודעה פנימי',
+              message: 'עשית לייק ל ' + user.nickName,
+              buttons: ['אישור']
             });
-
-            toast.present();
+            alert.present();
 
             let params = JSON.stringify({
                 toUser: user.id,
@@ -198,7 +222,7 @@ export class HomePage {
 
     block(user, bool) {
 
-        let toast;
+        //let toast;
         let params;
 
         if (this.params.list == 'black' && bool == true) {
@@ -233,11 +257,17 @@ export class HomePage {
 
             this.api.http.post(this.api.url + '/user/managelists/black/0/' + user.id, params, this.api.setHeaders(true, this.username, this.password)).subscribe(data => {
                 let res: any = data;
-                toast = this.toastCtrl.create({
-                    message: res.success,
-                    duration: 3000
+                // toast = this.toastCtrl.create({
+                //     message: res.success,
+                //     duration: 3000
+                // });
+                // toast.present();
+                let alert = this.api.alertCtrl.create({
+                  //title: 'הודעה פנימי',
+                  message: res.success,
+                  buttons: ['אישור']
                 });
-                toast.present();
+                alert.present();
             });
         }
     }
@@ -251,14 +281,18 @@ export class HomePage {
 
             this.api.http.post(this.api.url + '/user/managelists/favi/0/' + user.id, params, this.api.setHeaders(true, this.username, this.password)).subscribe(data => {
                 let res: any = data;
-                let toast = this.toastCtrl.create({
-                    message: res.success,
-                    duration: 3000
+                // let toast = this.toastCtrl.create({
+                //     message: res.success,
+                //     duration: 3000
+                // });
+                // toast.present();
+                let alert = this.api.alertCtrl.create({
+                  //title: 'הודעה פנימי',
+                  message: res.success,
+                  buttons: ['אישור']
                 });
+                alert.present();
 
-                console.log(this.users);
-
-                toast.present();
                 //index = this.users.indexOf(user);
                 this.users.splice(index, 1);
                 this.events.publish('statistics:updated');
@@ -292,12 +326,18 @@ export class HomePage {
 
         this.api.http.post(url, params, this.api.setHeaders(true, this.username, this.password)).subscribe(data => {
             let res: any = data;
-            let toast = this.toastCtrl.create({
-                message: res.success,
-                duration: 3000
+            // let toast = this.toastCtrl.create({
+            //     message: res.success,
+            //     duration: 3000
+            // });
+            // toast.present();
+            let alert = this.api.alertCtrl.create({
+              //title: 'הודעה פנימי',
+              message: res.success,
+              buttons: ['אישור']
             });
+            alert.present();
 
-            toast.present();
             this.events.publish('statistics:updated');
         });
     }
@@ -306,30 +346,34 @@ export class HomePage {
 
         //console.log(JSON.stringify(this.params.searchparams));
 
-        let params = JSON.stringify({
-            action: this.params.action,
-            list: '',
-            filter: this.filter,
-            page: 1,
-            searchparams: this.params.searchparams,
-            advanced_search: this.params.advanced_search,
+        // let params = JSON.stringify({
+        //     action: this.params.action,
+        //     list: '',
+        //     filter: this.filter,
+        //     page: 1,
+        //     searchparams: this.params.searchparams,
+        //     advanced_search: this.params.advanced_search,
+        //
+        // });
 
-        });
+        // if (this.params.list) {
+        //     params = JSON.stringify({
+        //         action: 'list',
+        //         list: this.params.list,
+        //         filter: this.filter,
+        //         page: 1,
+        //
+        //         searchparams: this.params.searchparams,
+        //         advanced_search: this.params.advanced_search,
+        //     })
+        // }
 
-        if (this.params.list) {
-            params = JSON.stringify({
-                action: 'list',
-                list: this.params.list,
-                filter: this.filter,
-                page: 1,
-
-                searchparams: this.params.searchparams,
-                advanced_search: this.params.advanced_search,
-            })
-        }
+        this.params.filter = this.filter;
+        this.params.page = this.page_counter = 1;
+        this.params_str = JSON.stringify(this.params);
 
         this.navCtrl.push(HomePage, {
-            params: params
+            params: JSON.stringify(this.params)
         })
     }
 

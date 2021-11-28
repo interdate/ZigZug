@@ -42,6 +42,7 @@ export class SubscriptionPage {
           // if(res.status == 'toPay'){
           //     this.data = res.data;
           // }else
+          console.log(res);
           if(res.status == 'login' && res.userIsPaying == 1){
             this.navCtrl.setRoot(HomePage);
             this.navCtrl.popToRoot();
@@ -133,34 +134,34 @@ export class SubscriptionPage {
 
     }
 
-    checkUserStatus(){
-        this.api.showLoad();
-        this.api.http.post(this.api.url + '/user/login/', '',  this.api.setHeaders(true)).subscribe(data => {
-            this.api.hideLoad();
-            var res:any = data;
-
-                this.api.storage.get('user_data').then((val) => {
-                    if(val) {
-                        if(val.status != res.status) {
-                            //update status
-                            val.status = res.status;
-                            this.api.storage.set('user_data', val);
-                        }
-                        if(res.status == 'login' && res.userIsPaying == 1) {
-                            this.navCtrl.setRoot(HomePage);
-                            this.navCtrl.popToRoot();
-                        }
-                    }
-                });
-
-
-
-
-        }, err => {
-            this.api.hideLoad();
-            //this.errors = err.error;
-        });
-    }
+    // checkUserStatus(){
+    //     this.api.showLoad();
+    //     this.api.http.post(this.api.url + '/user/login/', '',  this.api.setHeaders(true)).subscribe(data => {
+    //         this.api.hideLoad();
+    //         var res:any = data;
+    //
+    //             this.api.storage.get('user_data').then((val) => {
+    //                 if(val) {
+    //                     if(val.status != res.status) {
+    //                         //update status
+    //                         val.status = res.status;
+    //                         this.api.storage.set('user_data', val);
+    //                     }
+    //                     if(res.status == 'login' && res.userIsPaying == 1) {
+    //                         this.navCtrl.setRoot(HomePage);
+    //                         this.navCtrl.popToRoot();
+    //                     }
+    //                 }
+    //             });
+    //
+    //
+    //
+    //
+    //     }, err => {
+    //         this.api.hideLoad();
+    //         //this.errors = err.error;
+    //     });
+    // }
 
     ionViewWillEnter() {
         this.api.pageName = 'SubscriptionPage';

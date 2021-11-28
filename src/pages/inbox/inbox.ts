@@ -52,47 +52,72 @@ export class InboxPage {
         });
     }
 
-    moreUsers(infiniteScroll?: any) {
-        if (this.loader) {
-            this.prop.page++;
+  moreUsers() {
+    if (this.loader) {
+      this.prop.page++;
 
-            this.api.http.get(this.api.url + '/user/contacts/perPage:' + this.prop.perPage + '/page:' + this.prop.page, this.api.setHeaders(true)).subscribe(data => {
-                let res: any = data;
-                this.textMess = res.texts;
-                if (res.allChats.length < this.prop.perPage) {
-                    this.loader = false;
-                }
-                for (let person of res.allChats) {
-                    if(person.visibleMessagesNumber > 0){
-                        this.users.push(person);
-                    }
-                }
-                if(infiniteScroll) {
-                    setTimeout(function () {
-                        infiniteScroll.complete();
-                    }, 1);
-                }else{
-                    let that = this;
-                    setTimeout(function () {
-                        that.moreUsers();
-                    },1000);
-                }
-            });
-
+      this.api.http.get(this.api.url + '/user/contacts/perPage:' + this.prop.perPage + '/page:' + this.prop.page, this.api.setHeaders(true)).subscribe(data => {
+        let res: any = data;
+        this.textMess = res.texts;
+        if (res.allChats.length < this.prop.perPage) {
+          this.loader = false;
         }
+        for (let person of res.allChats) {
+          if(person.visibleMessagesNumber > 0 && this.users[this.users.length - 1]['user']['userId'] != person['user']['userId']){
+            this.users.push(person);
+          }
+        }
+        let that = this;
+        setTimeout(function () {
+          that.moreUsers();
+        },1000);
+      });
+
     }
+  }
+
+    // moreUsers(infiniteScroll?: any) {
+    //     if (this.loader) {
+    //         this.prop.page++;
+    //
+    //         this.api.http.get(this.api.url + '/user/contacts/perPage:' + this.prop.perPage + '/page:' + this.prop.page, this.api.setHeaders(true)).subscribe(data => {
+    //             let res: any = data;
+    //             this.textMess = res.texts;
+    //             if (res.allChats.length < this.prop.perPage) {
+    //                 this.loader = false;
+    //             }
+    //             for (let person of res.allChats) {
+    //                 if(person.visibleMessagesNumber > 0 && this.users[this.users.length - 1]['user']['userId'] != person['user']['userId']){
+    //                   this.users.push(person);
+    //                 }
+    //             }
+    //             if(infiniteScroll) {
+    //                 setTimeout(function () {
+    //                     infiniteScroll.complete();
+    //                 }, 1);
+    //             }else{
+    //                 let that = this;
+    //                 setTimeout(function () {
+    //                     that.moreUsers();
+    //                 },1000);
+    //             }
+    //         });
+    //
+    //     }
+    // }
 
     ionViewWillEnter() {
         if(this.chatWith){
-          let index = this.users.indexOf(this.chatWith);
-          if(this.chatWith.user.userId == 0){
-            this.users.slice(index, 1);
+          //let index = this.users.indexOf(this.chatWith);
+          let user = this.users[this.chatWith];
+          if(user.user.userId == 0){
+            this.users.slice(this.chatWith, 1);
           }else {
-            this.api.http.get(this.api.url + '/user/inbox/' + this.chatWith.user.userId, this.api.setHeaders(true)).subscribe((data: any) => {
+            this.api.http.get(this.api.url + '/user/inbox/' + user.user.userId, this.api.setHeaders(true)).subscribe((data: any) => {
               if (data.res) {
-                this.users[index] = data.res;
+                this.users[this.chatWith] = data.res;
               } else {
-                this.users.slice(index, 1);
+                this.users.slice(this.chatWith, 1);
               }
             });
           }
@@ -101,8 +126,9 @@ export class InboxPage {
         this.api.pageName = 'InboxPage';
     }
 
-    toDialogPage(user) {
+    toDialogPage(index) {
         var mess = '';
+        let user = this.users[index];
         if(user.user.isAllowedToSend == '1'){
             mess = this.textMess.chatErrorsMess[1];
         }else if(user.user.isAllowedToSend == '2'){
@@ -110,17 +136,23 @@ export class InboxPage {
         }
         if(mess == ''){
             //user.userId = user.id;
-            this.chatWith = user;
-            // this.userIndex = index;
+            this.chatWith = index;
+            //this.userIndex = index;
             this.navCtrl.push(DialogPage, {
                 user: user.user
             });
         }else{
-            let toast = this.toastCtrl.create({
-                message: mess,
-                duration: 5000
+            // let toast = this.toastCtrl.create({
+            //     message: mess,
+            //     duration: 5000
+            // });
+            // toast.present();
+            let alert = this.api.alertCtrl.create({
+              //title: 'הודעה פנימי',
+              message: mess,
+              buttons: ['אישור']
             });
-            toast.present();
+            alert.present();
         }
 
     }

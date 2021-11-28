@@ -163,12 +163,17 @@ export class ProfilePage {
 
         this.api.http.post(this.api.url + '/user/managelists/favi/' + act + '/' + this.user.id, params, this.api.setHeaders(true)).subscribe(data => {
             let res:any = data;
-            let toast = this.toastCtrl.create({
-                message: res.success,
-                duration: 3000
+            // let toast = this.toastCtrl.create({
+            //     message: res.success,
+            //     duration: 3000
+            // });
+            // toast.present();
+            let alert = this.api.alertCtrl.create({
+              //title: 'הודעה פנימי',
+              message: res.success,
+              buttons: ['אישור']
             });
-
-            toast.present();
+            alert.present();
         });
     }
 
@@ -191,12 +196,18 @@ export class ProfilePage {
 
         this.api.http.post(this.api.url + '/user/managelists/black/' + act + '/' + this.user.id, params, this.api.setHeaders(true)).subscribe(data => {
             let res:any = data;
-            let toast = this.toastCtrl.create({
-                message: res.success,
-                duration: 3000
-            });
+            // let toast = this.toastCtrl.create({
+            //     message: res.success,
+            //     duration: 3000
+            // });
+            // toast.present();
 
-            toast.present();
+            let alert = this.api.alertCtrl.create({
+              //title: 'הודעה פנימי',
+              message: res.success,
+              buttons: ['אישור']
+            });
+            alert.present();
 
         });
     }
@@ -213,11 +224,18 @@ export class ProfilePage {
                         this.api.http.post(this.api.url + '/user/setApprove/' + this.user.id, '', this.api.setHeaders(true)).subscribe((data:any) => {
                             //'אימות פרופיל בוצע, תודה.'
                             var mess = (data.message) ? data.message : 'אימות פרופיל בוצע, תודה.';
-                            let toast = this.toastCtrl.create({
-                                message: mess,
-                                duration: 2000
+                            // let toast = this.toastCtrl.create({
+                            //     message: mess,
+                            //     duration: 2000
+                            // });
+                            // toast.present();
+
+                            let alert = this.api.alertCtrl.create({
+                              //title: 'הודעה פנימי',
+                              message: mess,
+                              buttons: ['אישור']
                             });
-                            toast.present();
+                            alert.present();
                         });
                     }
                 },
@@ -236,12 +254,18 @@ export class ProfilePage {
     addLike() {
         if(this.user.isLike == '0') {
             this.user.isLike = '1';
-            let toast = this.toastCtrl.create({
-                message: ' עשית לייק ל' + this.user.userNick,
-                duration: 2000
-            });
+            // let toast = this.toastCtrl.create({
+            //     message: ' עשית לייק ל' + this.user.userNick,
+            //     duration: 2000
+            // });
+            // toast.present();
 
-            toast.present();
+            let alert = this.api.alertCtrl.create({
+              //title: 'הודעה פנימי',
+              message: 'עשית לייק ל ' + this.user.userNick,
+              buttons: ['אישור']
+            });
+            alert.present();
 
             let params = JSON.stringify({
                 toUser: this.user.id,
@@ -277,15 +301,23 @@ export class ProfilePage {
         }
         if(mess == ''){
             //user.userId = user.id;
+            this.user.nickName = this.user.userNick;
             this.navCtrl.push(DialogPage, {
                 user: this.user
             });
         }else{
-            let toast = this.toastCtrl.create({
-                message: mess,
-                duration: 5000
+            // let toast = this.toastCtrl.create({
+            //     message: mess,
+            //     duration: 5000
+            // });
+            // toast.present();
+
+            let alert = this.api.alertCtrl.create({
+              //title: 'הודעה פנימי',
+              message: mess,
+              buttons: ['אישור']
             });
-            toast.present();
+            alert.present();
         }
     }
 
@@ -307,12 +339,19 @@ export class ProfilePage {
 
         this.api.http.post(this.api.url + '/user/abuse/' + this.user.id, params, this.api.setHeaders(true)).subscribe(data => {
             let res:any = data;
-            let toast = this.toastCtrl.create({
-                message: (res.messageText) ? res.messageText : 'הודעתך נשלחה בהצלחה להנהלת האתר',
-                duration: 2000
-            });
+            // let toast = this.toastCtrl.create({
+            //     message: (res.messageText) ? res.messageText : 'הודעתך נשלחה בהצלחה להנהלת האתר',
+            //     duration: 2000
+            // });
+            // toast.present();
 
-            toast.present();
+            let alert = this.api.alertCtrl.create({
+              //title: 'הודעה פנימי',
+              message: (res.messageText) ? res.messageText : 'הודעתך נשלחה בהצלחה להנהלת האתר',
+              buttons: ['אישור']
+            });
+            alert.present();
+
         }, err => {
             console.log("Oops!");
         });

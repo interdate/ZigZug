@@ -46,13 +46,19 @@ export class PasswordRecoveryPage {
 
             this.form.form.email.value = "";
 
-            const toast = this.toastCtrl.create({
-                message: response.text,
-                showCloseButton: true,
-                closeButtonText: 'אישור',
-                duration: 5000
+            // const toast = this.toastCtrl.create({
+            //     message: response.text,
+            //     showCloseButton: true,
+            //     closeButtonText: 'אישור',
+            //     duration: 5000
+            // });
+            // toast.present();
+            let alert = this.api.alertCtrl.create({
+              //title: 'הודעה פנימי',
+              message: response.text,
+              buttons: ['אישור']
             });
-            toast.present();
+            alert.present();
         }
     }
 

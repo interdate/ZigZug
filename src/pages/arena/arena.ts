@@ -58,13 +58,18 @@ export class ArenaPage {
                     console.log("ChangePhotosPage");
                     this.navCtrl.remove(this.navCtrl.getPrevious().index);
                 }
-                let toast = this.toastCtrl.create({
-                    message: res.arenaStatus,
-                    showCloseButton: true,
-                    closeButtonText: 'אישור'
+                // let toast = this.toastCtrl.create({
+                //     message: res.arenaStatus,
+                //     showCloseButton: true,
+                //     closeButtonText: 'אישור'
+                // });
+                // toast.present();
+                let alert = this.api.alertCtrl.create({
+                  //title: 'הודעה פנימי',
+                  message: res.arenaStatus,
+                  buttons: ['אישור']
                 });
-
-                toast.present();
+                alert.present();
                 //this.navCtrl.popToRoot();
                 this.navCtrl.push(ChangePhotosPage);
             }
@@ -135,11 +140,17 @@ export class ArenaPage {
                 user: user
             });
         }else{
-            let toast = this.toastCtrl.create({
-                message: mess,
-                duration: 5000
+            // let toast = this.toastCtrl.create({
+            //     message: mess,
+            //     duration: 5000
+            // });
+            // toast.present();
+            let alert = this.api.alertCtrl.create({
+              //title: 'הודעה פנימי',
+              message: mess,
+              buttons: ['אישור']
             });
-            toast.present();
+            alert.present();
         }
     }
 
