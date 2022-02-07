@@ -32,15 +32,17 @@
       <input name="coupon" type="text" placehollder="קוד קלט" [(ngModel)]="coupon">
       <button (click)="sendCoupon()" >קבל הנחה</button>
     </div>
-      <form *ngIf="form" id="telepay" action="{{ form.action }}" method="get">
-          <input type="hidden" name="formId" [(ngModel)]="form.formId" />
-          <input type="hidden" name="app" [(ngModel)]="form.mobile" />
-          <input type="hidden" name="userId" [(ngModel)]="form.userId" />
-          <input type="hidden" name="product" [(ngModel)]="form.product" />
-          <input type="hidden" name="payPeriod" [(ngModel)]="form.payPeriod" />
-          <input type="hidden" name="prc" [(ngModel)]="form.prc" />
-          <input type="hidden" name="amount" value="1" />
-      </form>
+
+    <form *ngIf="form" id="telepay" action="{{ form.action }}" method="get">
+      <input type="hidden" name="formId" [(ngModel)]="form.formId" />
+      <input type="hidden" name="app" [(ngModel)]="form.mobile" />
+      <input type="hidden" name="userId" [(ngModel)]="form.userId" />
+      <input type="hidden" name="product" [(ngModel)]="form.product" />
+      <input type="hidden" name="payPeriod" [(ngModel)]="form.payPeriod" />
+      <input type="hidden" name="prc" [(ngModel)]="form.prc" />
+      <input type="hidden" name="isVip" [(ngModel)]="form.isVip" />
+      <input type="hidden" name="amount" value="1" />
+    </form>
     <div class="text-after" [innerHTML]="data.textAfter"></div>
   </div>
   <div class="bottom"></div>

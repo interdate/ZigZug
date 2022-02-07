@@ -57,6 +57,7 @@ export class HomePage {
         public api: ApiProvider,
         public events: Events
     ) {
+      // alert(2)
         this.api.filter = 'online';
         this.api.audioCall = new Audio();
         this.api.audioCall.src = 'https://www.zigzug.co.il/phone_ringing.mp3';

@@ -11,6 +11,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import {FingerprintAIO} from "@ionic-native/fingerprint-aio";
 import {InAppBrowser} from "@ionic-native/in-app-browser";
 import * as $ from "jquery";
+import {a} from "@angular/core/src/render3";
 //import {KeyboardOriginal} from "@ionic-native/keyboard";
 
 /*
@@ -30,6 +31,7 @@ export class ApiProvider {
     public username: any;
     public password: any;
     public myId: null;
+    public isVip: boolean;
 
     public textMess: any;
     public status: any = '';
@@ -79,9 +81,10 @@ export class ApiProvider {
         //this.url = 'https://m.zigzug.co.il/api/v2';
         //this.url = 'https://newzigzug1.wee.co.il/api/v2';
         //this.siteUrl = 'https://newzigzug2.wee.co.il';
-        this.siteUrl = 'https://www.zigzug.co.il';
-        //this.siteUrl = 'http://localhost:8102';
-        this.url = this.siteUrl + '/api/v2';
+        // this.siteUrl = 'https://www.zigzug.co.il';
+        this.siteUrl = 'http://localhost:8122';
+        this.url = this.siteUrl + '/app_dev.php/api/v2';
+        // alert(43)
         //this.testingMode = true;
       // export JAVA_HOME=`/usr/libexec/java_home -v 1.8.0_221`
     }

@@ -1,0 +1,68 @@
+<!-- Generated template for the User?ProfileComponent component -->
+<ion-card class="usr_profile" ion-item > <!--  *virtualItem="let user?"-->
+  <div *ngIf="user?.isPaing == '1'" class="king" ></div><!-- *ngIf="user?.isPays == true" -->
+  <div class="user-section">
+    <div *ngIf="user?.isOnline == '1'" class="online"></div>
+    <div *ngIf="user?.isNew == '1'" class="new-user"></div>
+    <div *ngIf="user?.isPaying == '1'" class="paying"></div>
+    <div *ngIf="user?.isApproved == '1'" class="approve"></div>
+    <div (click)="itemTapped(user)"
+         [ngStyle]="{ 'background-image': 'url(' +
+         (api.testingMode
+         ? ('https://www.zigzug.co.il/images/user?s/large/' + user?.userGender + '.jpg')
+         : api.siteUrl + user?.photos[0].url) + ')'}"
+         class="avatar"></div>
+
+    <!-- <div *ngIf="user?.photo != '/images/no_photo_2.jpg' && user?.photo != '/images/no_photo_1.jpg'" (click)="itemTapped(user)" [ngStyle]="{ 'background-image': 'url(' + user?.photo + ')'}"
+         class="avatar"></div> -->
+    <div class="wrap">
+      <ion-card-title (click)="itemTapped(user)">
+        <div class="row">
+          <span class="name" [ngClass]="{'long-name': user?.nickName?.length >= 12 }">{{user?.nickName}},</span>
+
+          <span class="age">{{user?.age}}</span>
+        </div>
+        <div class="row">
+          <span class="location" [ngClass]="{'long-city': user?.area?.length>= 10 }">{{user?.area }}</span>
+          <span class="distance">{{ user?.distance }}</span>
+        </div>
+      </ion-card-title>
+      <ul class="profile-btn" [ngClass]="{'adw':user?.commercial == '1'}">
+        <div class="btn" [ngClass]="{'disabled': user?.id == api.myId }" (click)=toDialog(user)>
+          <li id="mobmsg"></li>
+          <div>{{texts?.message}}</div>
+        </div>
+        <div class="btn" [ngClass]="{'disabled': user?.isLike == '1' }" (click)="addLike(user)">
+          <!--Message-->
+          <li id="like-red"></li>
+          <div>{{texts?.like}}</div>
+          <!--Like-->
+        </div>
+        <div *ngIf="!api.videoShow && !blocked_img && user?.isFav == '1'" class="btn"
+             ><!--(click)=addFavorites(user)-->
+          <li id="remove-green"></li>
+          <div>{{texts?.remove}}</div>
+        </div>
+
+        <div *ngIf="!api.videoShow && !blocked_img && user?.isFav == '0'" class="btn"
+             ><!--(click)=addFavorites(user)-->
+
+          <li id="add-green"></li>
+          <div>{{texts?.add}}</div>
+        </div>
+
+        <div class="btn blocked"> <!--(click)=unFavorites(user?,i) *ngIf="params.list == 'fav'"-->
+          <li id="cap"></li>
+          <div>{{texts?.remove}}</div>
+        </div>
+
+<!--        <div *ngIf="api.videoShow" class="btn">&lt;!&ndash;(click)="toVideoChat(user)"&ndash;&gt;-->
+<!--          <li id="video-chat"></li>-->
+<!--          <div>וידאו</div>-->
+<!--        </div>-->
+        <!--Add-->
+      </ul>
+      <div class="clr"></div>
+    </div>
+  </div>
+</ion-card>

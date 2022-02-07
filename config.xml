@@ -125,4 +125,5 @@
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
     <plugin name="phonegap-plugin-push" spec="^2.3.0" />
     <plugin name="cordova-support-google-services" spec="https://github.com/LuisEGR/cordova-support-google-services.git" />
+    <engine name="android" spec="8.1.0" />
 </widget>

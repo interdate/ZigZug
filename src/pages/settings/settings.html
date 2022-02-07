@@ -30,5 +30,9 @@
     <ion-label>לאפשר טביעת אצבע לאחר הכניסה</ion-label>
     <ion-checkbox tappable (click)="submit('fingerprint')" [(ngModel)]="fingerAuth" color="danger" ></ion-checkbox>
   </ion-item>
+  <ion-item>
+    <ion-label>עריכת מנוי</ion-label>
+    <ion-checkbox tappable (click)="onEditSubscription()" color="danger" ></ion-checkbox>
+  </ion-item>
   <div class="bottom"></div>
 </ion-content>

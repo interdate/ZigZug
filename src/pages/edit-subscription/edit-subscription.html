@@ -1,0 +1,33 @@
+<!--
+  Generated template for the EditSubscriptionPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <ion-title>editSubscription</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding *ngIf="data">
+
+  <h1>{{data?.texts?.title}}</h1>
+
+  <div class="subscriptionInfo" >
+    <p *ngFor="let info of data?.texts?.subsInfo">
+      <span class="label">{{info?.label}}</span>
+      <span class="value">{{info?.value}}</span>
+    </p>
+  </div>
+
+  <button *ngIf="!api.isVip" ion-button color="danger" (click)="onUpgrade()"> {{data?.texts?.buttons?.upgrade}} </button>
+  <button *ngIf="api.isVip" ion-button color="danger" (click)="onDowngrade()"> {{data?.texts?.buttons?.downgrade}} </button>
+
+</ion-content>
+
+<ion-content *ngIf="!data">
+  <p>
+    {{ no_data }}
+  </p>
+</ion-content>

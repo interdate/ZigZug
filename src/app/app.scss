@@ -943,3 +943,22 @@ ion-footer.footer-ios::before {
 .virtual-scroll .virtual-position, .virtual-scroll .virtual-position.item{
   right: auto;
 }
+
+.vip {
+  .user-section {
+    background-image: url(https://polydate.co.il/images/backgroundgold.jpg);
+  }
+
+  .avatar {
+    background-color: transparent;
+  }
+
+  .card-title-md, .card-title-ios {
+    color: #000;
+    background: #ffffff57;
+  }
+
+  .user-section > .wrap {
+    background: transparent;
+  }
+}

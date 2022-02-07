@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-navbar class="toolbar-color" color="contrast">
+    <ion-title [innerHTML]="vipTexts?.title"> </ion-title>
+    <div class="subtitle" [innerHTML]="vipTexts?.subtitle"></div>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="big-icon"></div>
+  <div class="big-sub-title">
+    <div class="icon"></div>
+    <div class="red" *ngIf="subsc?.period">{{vipTexts?.bigSubTitles.red[subsc.period]}}</div>
+    <div class="white">{{vipTexts?.bigSubTitles.white}}</div>
+  </div>
+  <div class="profile-changes">
+    <div class="vip">
+      <div class="user-section">
+        <div *ngIf="user?.isOnline == '1'" class="online"></div>
+        <div *ngIf="user?.isNew == '1'" class="new-user"></div>
+        <div *ngIf="user?.isPaying == '1'" class="paying"></div>
+        <div *ngIf="user?.isApproved == '1'" class="approve"></div>
+        <div [ngStyle]="{ 'background-image': 'url(' +
+         (api.testingMode
+         ? ('https://www.zigzug.co.il/images/user?s/large/' + user?.userGender + '.jpg')
+         : api.siteUrl + user?.photos[0].url) + ')'}"
+             class="avatar"></div>
+
+        <!-- <div *ngIf="user?.photo != '/images/no_photo_2.jpg' && user?.photo != '/images/no_photo_1.jpg'" (click)="itemTapped(user)" [ngStyle]="{ 'background-image': 'url(' + user?.photo + ')'}"
+             class="avatar"></div> -->
+        <div class="wrap">
+          <ion-card-title>
+            <div class="row">
+              <span class="name" [ngClass]="{'long-name': user?.userNick?.length >= 12 }">{{user?.userNick}},</span>
+
+              <span class="age">{{user?.age}}</span>
+            </div>
+            <div class="row">
+              <span class="location" [ngClass]="{'long-city': user?.area?.length>= 10 }">{{user?.area }}</span>
+              <span class="distance">0ק״מ</span>
+            </div>
+          </ion-card-title>
+          <ul class="profile-btn" [ngClass]="{'adw':user?.commercial == '1'}">
+            <div class="btn">
+              <li id="mobmsg"></li>
+              <div>{{texts?.message}}</div>
+            </div>
+            <div class="btn">
+              <!--Message-->
+              <li id="like-red"></li>
+              <div>{{texts?.like}}</div>
+              <!--Like-->
+            </div>
+            <div class="btn">
+
+              <li id="add-green"></li>
+              <div>{{texts?.add}}</div>
+            </div>
+
+          </ul>
+          <div class="clr"></div>
+        </div>
+      </div>
+    </div>
+    <div class="no-vip">
+      <div class="user-section">
+        <div *ngIf="user?.isOnline == '1'" class="online"></div>
+        <div *ngIf="user?.isNew == '1'" class="new-user"></div>
+        <div *ngIf="user?.isPaying == '1'" class="paying"></div>
+        <div *ngIf="user?.isApproved == '1'" class="approve"></div>
+        <div [ngStyle]="{ 'background-image': 'url(' +
+         (api.testingMode
+         ? ('https://www.zigzug.co.il/images/user?s/large/' + user?.userGender + '.jpg')
+         : api.siteUrl + user?.photos[0].url) + ')'}"
+             class="avatar"></div>
+
+        <!-- <div *ngIf="user?.photo != '/images/no_photo_2.jpg' && user?.photo != '/images/no_photo_1.jpg'" (click)="itemTapped(user)" [ngStyle]="{ 'background-image': 'url(' + user?.photo + ')'}"
+             class="avatar"></div> -->
+        <div class="wrap">
+          <ion-card-title>
+            <div class="row">
+              <span class="name" [ngClass]="{'long-name': user?.userNick?.length >= 12 }">{{user?.userNick}},</span>
+
+              <span class="age">{{user?.age}}</span>
+            </div>
+            <div class="row">
+              <span class="location" [ngClass]="{'long-city': user?.area?.length>= 10 }">{{user?.area }}</span>
+              <span class="distance">0ק״מ</span>
+            </div>
+          </ion-card-title>
+          <ul class="profile-btn" [ngClass]="{'adw':user?.commercial == '1'}">
+            <div class="btn">
+              <li id="mobmsg"></li>
+              <div>{{texts?.message}}</div>
+            </div>
+            <div class="btn">
+              <!--Message-->
+              <li id="like-red"></li>
+              <div>{{texts?.like}}</div>
+              <!--Like-->
+            </div>
+            <div class="btn">
+
+              <li id="add-green"></li>
+              <div>{{texts?.add}}</div>
+            </div>
+
+          </ul>
+          <div class="clr"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ul class="vip-bonuses">
+    <li *ngFor="let bonus of vipTexts?.bonuses"> {{ bonus }} </li>
+  </ul>
+  <div class="btns">
+    <button (click)="close(true)" class="upgrade-btn" color="danger" ion-button block> {{vipTexts?.buttons.updateToVip}} </button>
+    <button (click)="close(false)" class="outline-btn" ion-button block >{{ vipTexts?.buttons.cancel }}</button>
+  </div>
+</ion-content>

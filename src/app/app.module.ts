@@ -61,13 +61,15 @@ import {NotificationsPage} from "../pages/notifications/notifications";
 import {SearchResultPage} from "../pages/search-result/search-result";
 import {FreezePageModule} from "../pages/freeze/freeze.module";
 import {FreezePage} from "../pages/freeze/freeze";
+import {VipModal2PageModule} from "../pages/vip-modal2/vip-modal2.module";
+import {EditSubscriptionPageModule} from "../pages/edit-subscription/edit-subscription.module";
 //import {KeyboardOriginal} from "@ionic-native/keyboard";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ActivationPage
+    ActivationPage,
   ],
   imports: [
     BrowserModule,
@@ -101,7 +103,7 @@ import {FreezePage} from "../pages/freeze/freeze";
         {component: LoginPage, name: 'כניסה', segment: 'login', defaultHistory: [HomePage]},
         {component: NotificationsPage, name: 'התיבה שלי', segment: 'notifications', defaultHistory: [HomePage]},
         {component: SearchResultPage, name: 'תוצאות חיפוש', segment: 'page-search-result/:gender/:ageFrom/:ageTo', defaultHistory: [HomePage]},
-        {component: FreezePage, name: 'הקפאת חשבון', segment: 'freeze', defaultHistory: [HomePage]}
+        {component: FreezePage, name: 'הקפאת חשבון', segment: 'freeze', defaultHistory: [HomePage]},
       ]
     }),
     IonicStorageModule.forRoot(),
@@ -114,6 +116,7 @@ import {FreezePage} from "../pages/freeze/freeze";
     SettingsPageModule,
     AdvancedSearchPageModule,
     SelectPageModule,
+    VipModal2PageModule,
     ChangePasswordPageModule,
     PasswordRecoveryPageModule,
     ArenaPageModule,
@@ -128,6 +131,7 @@ import {FreezePage} from "../pages/freeze/freeze";
     ArticlePageModule,
     SearchResultPageModule,
     FreezePageModule,
+    EditSubscriptionPageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

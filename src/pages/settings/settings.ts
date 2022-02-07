@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import {ApiProvider} from "../../providers/api/api";
+import {EditSubscriptionPage} from "../edit-subscription/edit-subscription";
 
 /**
  * Generated class for the SettingsPage page.
@@ -107,6 +108,10 @@ export class SettingsPage {
         }
 
 
+    }
+
+    onEditSubscription() {
+        this.navCtrl.push(EditSubscriptionPage)
     }
 
     ionViewWillEnter() {

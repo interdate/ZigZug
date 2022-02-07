@@ -9,6 +9,7 @@ import {ProfilePage} from "../profile/profile";
 
 import * as $ from 'jquery';
 import {SubscriptionPage} from "../subscription/subscription";
+import {VipModal2Page} from "../vip-modal2/vip-modal2";
 /**
  * Generated class for the DialogPage page.
  *
@@ -117,6 +118,11 @@ export class DialogPage {
         this.api.http.get(this.api.url + '/user/chat/' + userId, this.api.setHeaders(true)).subscribe(data => {
             let res:any = data;
             this.user = res.user;
+            if (res.errorMessageId == '3') {
+              if (!this.api.isVip) {
+                this.navCtrl.push(VipModal2Page);
+              }
+            }
             /*this.texts = data.json().texts;*/
             this.adminMessagesCount = res.adminMessagesCount;
             this.messages = res.chat.items;

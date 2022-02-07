@@ -38,6 +38,7 @@ import {FullScreenProfilePage} from "../pages/full-screen-profile/full-screen-pr
 import {AdvancedSearchPage} from "../pages/advanced-search/advanced-search";
 import set = Reflect.set;
 import {FreezePage} from "../pages/freeze/freeze";
+import {EditSubscriptionPage} from "../pages/edit-subscription/edit-subscription";
 
 
 @Component({
@@ -88,9 +89,10 @@ export class MyApp {
     public ap: AndroidPermissions
 
   ) {
-    //alert(pushMess.currentToken);
+    // alert(pushMess.currentToken);
     //this.browserPush.disableNotifications();
     //this.browserPush.enableNotifications();
+    // alert(234)
     this.events.subscribe('statistics:updated', () => {
       // user and time are the same arguments passed in `events.publish(user, time)`
       this.getStatistics();
@@ -302,6 +304,7 @@ export class MyApp {
         this.api.http.get(this.api.url + '/user/statistics/', this.api.setHeaders(true)).subscribe((data:any) => {
           var resp: any = data;
           let statistics = resp.statistics;
+          this.api.isVip = data.isVip;
 
           if(val.status != resp.status || val.userIsPaying != resp.userIsPaying){
             this.api.status = val.status = resp.status;
@@ -389,6 +392,7 @@ export class MyApp {
       {_id: 'stats', icon: 'stats', title: menu.contacts, component: ProfilePage, count: ''},
       {_id: 'search', icon: 'search', title: menu.search, component: SearchPage, count: ''},
       {_id: '', icon: 'information-circle', title: 'שאלות נפוצות', component: FaqPage, count: ''},
+      {_id: '', icon: 'information-circle', title: 'שאלות נפוצות', component: FaqPage, count: ''},
     ];
 
     this.menu_items_login = [
@@ -401,8 +405,13 @@ export class MyApp {
       {_id: '', icon: 'information-circle', title: 'שאלות נפוצות', component: FaqPage, count: ''},
       {_id: '', icon: 'mail', title: menu.contact_us, component: ContactUsPage, count: ''},
       {_id: 'subscribe', icon: 'ribbon', title: 'רכישת מנוי', component: SubscriptionPage, count: ''},
+      {_id: 'update_subscription', icon: 'ribbon', title: 'שידרוג מנוי', component: EditSubscriptionPage, count: ''},
 
     ];
+    // console.log(this.api.userIsPaying , !this.api.isVip)
+    // if (this.api.isVip) {
+
+    // }
 
     this.menu_items_settings = [
       {_id: 'edit_profile', icon: '', title: menu.edit_profile, component: RegisterPage, count: ''},
@@ -412,7 +421,7 @@ export class MyApp {
       {_id: 'freeze_account', icon: '', title: menu.freeze_account, component: FreezePage, count: ''},
       {_id: 'settings', icon: '', title: menu.settings, component: SettingsPage, count: ''},
       {_id: '', icon: 'mail', title: menu.contact_us, component: ContactUsPage, count: ''},
-      {_id: 'logout', icon: 'log-out', title: menu.log_out, component: LoginPage, count: ''}
+      {_id: 'logout', icon: 'log-out', title: menu.log_out, component: LoginPage, count: ''},
     ];
 
 
@@ -1131,10 +1140,10 @@ export class MyApp {
           this.is_login = false;
         } else {
           this.getStatistics();
-          if(val.status == 'not_activated'){
+          if (val.status == 'not_activated') {
             this.menu_items = this.menu_items_logout;
             this.is_login = false;
-          }else {
+          } else {
             this.is_login = true;
             this.menu_items = this.menu_items_login;
           }

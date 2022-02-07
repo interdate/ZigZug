@@ -31,6 +31,7 @@ export class ContactUsPage {
     text_err: any;
     subject_err: any;
     allfields = '';
+    defaultText: any;
     public logged_in = false;
 
     constructor(
@@ -45,6 +46,12 @@ export class ContactUsPage {
                 this.user_id = val.user_id;
             }
         });
+
+        this.defaultText = this.navParams.get('texts');
+        if ( this.defaultText) {
+          this.form.form.subject.value = this.defaultText.title;
+          this.form.form.text.value = this.defaultText.message;
+        }
     }
 
     formSubmit() {
