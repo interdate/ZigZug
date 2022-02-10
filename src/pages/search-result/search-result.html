@@ -14,9 +14,9 @@
   <ion-list>
     <div *ngIf="users">
     <div class="no_results" *ngIf="users?.length == 0">אין תוצאות</div>
-    <ion-card *ngFor="let user of users; let i = index" class="usr_profile" ion-item > <!--  *virtualItem="let user"-->
+    <ion-card *ngFor="let user of users; let i = index" class="usr_profile {{user.isPaying ? 'paying-user' : ''}}" ion-item> <!--  *virtualItem="let user"-->
       <div *ngIf="user.isPaing == '1'" class="king" ></div><!-- *ngIf="user.isPays == true" -->
-      <div class="user-section">
+      <div class="user-section {{user.isVip ? 'vip' : ''}}">
         <div *ngIf="user.isOnline == '1'" class="online"></div>
         <div *ngIf="user.isNew == '1'" class="new-user"></div>
         <div *ngIf="user.isPaying == '1'" class="paying"></div>

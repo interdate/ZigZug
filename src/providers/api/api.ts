@@ -49,7 +49,7 @@ export class ApiProvider {
     public notActivateAlert: any = false;
     public faioData: any;
     public browserToken: any;
-    public appVersion: any = 12;
+    public appVersion: any = 13;
     public callAlertShow:any = false;
     public videoChat: any = null;
     public videoTimer: any = null;
@@ -82,8 +82,8 @@ export class ApiProvider {
         //this.url = 'https://newzigzug1.wee.co.il/api/v2';
         //this.siteUrl = 'https://newzigzug2.wee.co.il';
         // this.siteUrl = 'https://www.zigzug.co.il';
-        this.siteUrl = 'http://localhost:8122';
-        this.url = this.siteUrl + '/app_dev.php/api/v2';
+        this.siteUrl = 'http://localhost:8123/app_dev.php';
+        this.url = this.siteUrl + '/api/v2';
         // alert(43)
         //this.testingMode = true;
       // export JAVA_HOME=`/usr/libexec/java_home -v 1.8.0_221`
@@ -497,6 +497,9 @@ export class ApiProvider {
         myHeaders = myHeaders.append('Content-type', 'application/json');
         myHeaders = myHeaders.append('Accept', '*/*');
         myHeaders = myHeaders.append('Access-Control-Allow-Origin', '*');
+        if (this.username && (this.username.toLowerCase() == 'popo' || this.username.toLowerCase() == 'tiptip')) {
+          myHeaders = myHeaders.append('testingMode', '1');
+        }
 
         //myHeaders = myHeaders.append('Origin', 'http://localhost');
 

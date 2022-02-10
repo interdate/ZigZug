@@ -15,6 +15,8 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+
+
 body, body *{
   direction: rtl;
 }
@@ -638,7 +640,7 @@ ion-header button {
 
 .avatar {
   background-position: center;
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   width: 100%;
   height: 300px;;
@@ -944,21 +946,3 @@ ion-footer.footer-ios::before {
   right: auto;
 }
 
-.vip {
-  .user-section {
-    background-image: url(https://polydate.co.il/images/backgroundgold.jpg);
-  }
-
-  .avatar {
-    background-color: transparent;
-  }
-
-  .card-title-md, .card-title-ios {
-    color: #000;
-    background: #ffffff57;
-  }
-
-  .user-section > .wrap {
-    background: transparent;
-  }
-}

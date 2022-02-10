@@ -14,10 +14,10 @@
   </div>
   <div class="profile-changes">
     <div class="vip">
-      <div class="user-section">
+      <div class="user-section vip">
         <div *ngIf="user?.isOnline == '1'" class="online"></div>
         <div *ngIf="user?.isNew == '1'" class="new-user"></div>
-        <div *ngIf="user?.isPaying == '1'" class="paying"></div>
+        <div *ngIf="user?.isPaying == '1'" class="paying-vip"></div>
         <div *ngIf="user?.isApproved == '1'" class="approve"></div>
         <div [ngStyle]="{ 'background-image': 'url(' +
          (api.testingMode

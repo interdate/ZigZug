@@ -60,7 +60,7 @@ page-vip-modal2 {
   }
 
   .vip, .no-vip {
-    width: 50%;
+    width: 99%;
   }
 
   .big-sub-title {
@@ -138,6 +138,28 @@ page-vip-modal2 {
 
   .avatar {
     height: 210px;
+  }
+
+  .paying-vip {
+    background: url(../assets/img/icons/vip-icon.png) no-repeat;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    background-size: cover;
+    left: -1px;
+    top: 197px;
+    z-index: 999999;
+  }
+
+  .paying {
+    background: url(../assets/img/icons/paid.png) no-repeat;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    background-size: cover;
+    left: -1px;
+    top: 197px;
+    z-index: 999999;
   }
 
   .user-section > .wrap {

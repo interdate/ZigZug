@@ -590,23 +590,6 @@ export class MyApp {
     //   visibility: 1
     // }).then(() => {console.log('create channel')})
 
-    this.push.createChannel({
-      id: 'video',
-      importance: 5,
-      sound: 'landline_phone_ring',
-      description: 'ZigZug video call notification',
-      vibration: true,
-      visibility: 1,
-    });
-
-    this.push.createChannel({
-      id: 'message',
-      importance: 5,
-      sound: 'ding_dong',
-      description: 'ZigZug push notification',
-      vibration: true,
-      visibility: 1,
-    });
 
     const options: PushOptions = {
       android: {
@@ -625,6 +608,25 @@ export class MyApp {
     };
 
     this.push2 = this.push.init(options);
+
+    this.push.createChannel({
+      id: 'video',
+      importance: 5,
+      sound: 'landline_phone_ring',
+      description: 'ZigZug video call notification',
+      vibration: true,
+      visibility: 1,
+    });
+
+    this.push.createChannel({
+      id: 'message',
+      importance: 5,
+      sound: 'ding_dong',
+      description: 'ZigZug push notification',
+      vibration: true,
+      visibility: 1,
+    });
+
 
     this.push2.on('registration').subscribe((data) => {
       //this.deviceToken = data.registrationId;

@@ -81,6 +81,7 @@ $colors: (
 // http://ionicframework.com/docs/ionicons/
 
 @import "ionic.ionicons";
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700;800&display=swap');
 
 
 // Fonts
@@ -88,3 +89,8 @@ $colors: (
 
 @import "roboto";
 @import "noto-sans";
+
+$font-family-base: "Open Sans";
+$font-family-ios-base: $font-family-base;
+$font-family-md-base: $font-family-base;
+$font-family-wp-base: $font-family-base;
