@@ -39,6 +39,7 @@
     </div>
     <div class="content">
       <div class="pmtitle">
+        <button (click)="back()" style="height: 50px;width: 50px;border: 2px solid black"> > cCLICK</button>
         <div *ngIf="user.isPaying == 1" class="paying"></div>
         <div *ngIf="user.isNew == '1'" class="new-user"></div>
         <div *ngIf="user.isOnline == '1'" class="online-user"></div>

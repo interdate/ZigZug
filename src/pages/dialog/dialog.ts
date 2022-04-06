@@ -465,7 +465,7 @@ export class DialogPage {
         }
 
         this.api.footer = true;
-        $('.back-btn').hide();
+        this.api.showBackBtn = false;
         // enable the root left menu when leaving the tutorial page
         clearInterval(this.checkChat);
         $('.banner').removeAttr('style');
@@ -490,7 +490,7 @@ export class DialogPage {
     ionViewWillEnter() {
         this.api.footer = false;
         this.api.pageName = 'DialogPage';
-        $('.back-btn').show();
+        this.api.showBackBtn = true;
         $('.footerMenu').hide();
         $('.banner').hide();
     }

@@ -21,6 +21,12 @@ body, body *{
   direction: rtl;
 }
 
+
+.scroll-content {
+  padding-bottom: 0 !important;
+}
+
+
 .item-md.item-input.ng-valid.item-input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner,
 .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus):not(.item-input-has-focus) .item-inner {
   border-bottom-color: rgba(0,0,0,0);
@@ -36,10 +42,20 @@ body, body *{
 
 .banner {
   position: absolute;
-  bottom: 10.5%;
+  bottom: 55.6px;
   z-index: 9;
-  width: 80%;
-  right: 10%;
+  width: 100%;
+  right: 0;
+  left: 0;
+  margin: auto;
+}
+
+.menuBanner {
+  height: 100px;
+  width: 99%;
+  margin: 30px auto;
+
+  background-repeat: no-repeat;
 }
 
 /*.item-block{
@@ -98,7 +114,6 @@ ion-menu .item-md [item-right] {
   top: 70px;
   right: 11px;
   border: 1px solid rgba(1, 1, 1, 0.5);
-  display: none;
 }
 
 .back-btn ion-icon{

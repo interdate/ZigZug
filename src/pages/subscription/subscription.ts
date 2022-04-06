@@ -26,6 +26,8 @@ export class SubscriptionPage {
     coupon: any = '';
     vipTexts: any;
     user: any
+    browser: any;
+    checkPaymentInterval: any
 
     constructor(
         public navCtrl: NavController,
@@ -36,6 +38,7 @@ export class SubscriptionPage {
     ) {
         this.getSubscriptions()
     }
+
 
     getSubscriptions() {
 
@@ -145,17 +148,51 @@ export class SubscriptionPage {
         this.form.payPeriod = payPeriod;
         this.form.prc = btoa(subsc.amount);
         this.form.isVip = subsc.isVip ? 1 : 0;
-        // alert(JSON.stringify(this.form));
         setTimeout(() => {
-          $('#telepay').submit();
-          this.api.hideLoad();
-        }, 100);
+          this.checkPaymentInterval = setInterval(() => {
+            this.checkPayment();
 
+          }, 10000);
+
+          this.browser = this.iab.create(this.form.action
+            + '?formId='  + this.form.formId
+            + '&app='  + this.form.mobile
+            + '&userId='  + this.form.userId
+            + '&product='  + this.form.product
+            + '&payPeriod='  + this.form.payPeriod
+            + '&prc='  + this.form.prc
+            + '&isVip='  + this.form.isVip
+            + '&amount='  + 1
+          , '_blank', {});
+
+          this.api.hideLoad();
+
+
+      // }
+
+        })
       }
-    }
+  }
+
+
+  checkPayment() {
+    this.api.http.get(this.api.url + '/user/paying', this.api.header).subscribe((res: any) => {
+      if (res.paying) {
+        console.log( this.browser.close());
+        clearInterval(this.checkPaymentInterval);
+        if (this.api.pageName === 'SubscriptionPage') {
+          this.navCtrl.push(HomePage);
+        }
+      }
+    })
+  }
 
     ionViewWillEnter() {
         this.api.pageName = 'SubscriptionPage';
+    }
+
+    ionViewWillLeave() {
+      clearInterval(this.checkPaymentInterval);
     }
 
 }

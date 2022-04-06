@@ -18,7 +18,7 @@ import * as $ from "jquery";
 export class VipModal2Page {
 
   constructor(
-    private modalCtrl: ModalController,
+    // private modalCtrl: ModalController,
     private navParams: NavParams,
     public api: ApiProvider,
     public viewCtrl: ViewController,

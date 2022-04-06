@@ -36,9 +36,10 @@ import {ActivationPage} from "../pages/activation/activation";
 import {Page} from "../pages/page/page";
 import {FullScreenProfilePage} from "../pages/full-screen-profile/full-screen-profile";
 import {AdvancedSearchPage} from "../pages/advanced-search/advanced-search";
-import set = Reflect.set;
 import {FreezePage} from "../pages/freeze/freeze";
 import {EditSubscriptionPage} from "../pages/edit-subscription/edit-subscription";
+import {Deeplinks} from "@ionic-native/deeplinks";
+import {InAppBrowser} from "@ionic-native/in-app-browser";
 
 
 @Component({
@@ -76,6 +77,7 @@ export class MyApp {
   interval: any = true;
   push2: PushObject;
   lastCallId: any = null;
+  menuBanner: string;
 
   constructor(
     public platform: Platform,
@@ -86,7 +88,9 @@ export class MyApp {
     public alertCtrl: AlertController,
     public events: Events,
     public push: Push,
-    public ap: AndroidPermissions
+    public ap: AndroidPermissions,
+    public deepLinks: Deeplinks,
+    public iap: InAppBrowser,
 
   ) {
     // alert(pushMess.currentToken);
@@ -110,6 +114,8 @@ export class MyApp {
         // }, 5000);
       }
     });
+
+
 
     this.api.storage.get('fingerAIO').then((val:any)=>{
       //alert(JSON.stringify(val));
@@ -295,7 +301,7 @@ export class MyApp {
   }
 
   goBack() {
-    this.nav.pop();
+    this.nav.pop({animate: false}).then();
   }
 
   getStatistics() {
@@ -313,6 +319,10 @@ export class MyApp {
             this.api.storage.set('user_data', val);
             this.checkStatus();
           }
+
+          // if (data.menuBanner) {
+            this.menuBanner = data.menuBanner;
+          // }
 
 
           this.isPaying = resp.userIsPaying;
@@ -607,8 +617,6 @@ export class MyApp {
       }
     };
 
-    this.push2 = this.push.init(options);
-
     this.push.createChannel({
       id: 'video',
       importance: 5,
@@ -627,16 +635,17 @@ export class MyApp {
       visibility: 1,
     });
 
+    this.push2 = this.push.init(options);
 
-    this.push2.on('registration').subscribe((data) => {
-      //this.deviceToken = data.registrationId;
-      console.log('deviceToken:' + data.registrationId);
-      this.api.storage.set('deviceToken', data.registrationId);
-      this.api.sendPhoneId(data.registrationId);
-      //TODO - send device token to server
-    });
+
+
+
+
+
 
     this.push2.on('notification').subscribe((data) => {
+
+      console.log(data)
       //let self = this;
       //if user using app and push notification comes
       /*if (data.additionalData.foreground == false) {
@@ -648,6 +657,16 @@ export class MyApp {
               }
           });
       }*/
+
+      console.log(data);
+      console.log(data.additionalData.foreground == false);
+
+      if (typeof data.additionalData.type != 'undefined') {
+        this.adminPush(data);
+        // return false;
+      }
+
+      console.log('after return false if')
 
       if(data.additionalData.foreground == false){
         if(typeof data.additionalData.video != 'undefined' && data.additionalData.video == '1'){
@@ -687,13 +706,27 @@ export class MyApp {
         }
       }
     });
+
+    this.push2.on('registration').subscribe((data) => {
+
+      console.log('deviceToken:' + data.registrationId);
+      this.api.storage.set('deviceToken', data.registrationId);
+      this.api.sendPhoneId(data.registrationId);
+      //TODO - send device token to server
+    });
+
+    this.push2.on('error').subscribe((err) => {
+
+      console.log('push err')
+      console.log(err);
+    })
   }
 
   openPushMessage(data){
     if(typeof data.additionalData.urlRedirect == 'undefined'){
       if(typeof data.additionalData.userId == 'undefined'){
         this.nav.push(InboxPage);
-      }else{
+      }else if (!data.additionalData.url || data.additionalData.url == '/dialog'){
         //alert(JSON.stringify(data));
         this.nav.push(DialogPage, {
           user: {
@@ -701,6 +734,24 @@ export class MyApp {
             nickName: data.additionalData.userNick
           }
         });
+      } else {
+        if (data.additionalData.type == 'linkOut') {
+          // console.log('in if linkOut');
+          this.iap.create(data.additionalData.url);
+        } else {
+
+          this.api.storage.get('user_data').then((val) => {
+            // alert(val);
+            if (val) {
+              this.api.setHeaders(true, val.username, val.password);
+              this.nav.push(data.url)
+            } else {
+              console.log('afterLogin in app.component');
+              this.nav.push(LoginPage);
+            }
+          });
+        }
+
       }
     }else{
       /*var ref = */window.open(data.additionalData.urlRedirect, '_system');
@@ -804,11 +855,22 @@ export class MyApp {
   }
 
   getBanner() {
-    this.api.http.get(this.api.url + '/user/banner?u=test', this.api.header).subscribe(data => {
+    this.api.http.get(this.api.url + '/user/banner?u=test', this.api.header).subscribe((data: any) => {
       let resp:any = data;
       this.banner = resp;
       if(this.api.pageName == 'LoginPage'){
         $('.banner').css({'bottom':'3px'});
+      }
+
+      if (data.css) {
+        $('.banner').css({
+          'bottom': data.css.bottom,
+          'top': data.css.top,
+          'right': data.css.right,
+          'left': data.css.left,
+          'height': data.css.height,
+          'width': data.css.width,
+        })
       }
     });
   }
@@ -1079,26 +1141,23 @@ export class MyApp {
     }
   }
 
+  menuBannerClick() {
+    this.nav.push(SubscriptionPage);
+    this.menu.close();
+  }
+
   ngAfterViewInit() {
 
     this.nav.viewDidEnter.subscribe((view) => {
 
       this.getBanner();
-      let that = this;
-      clearInterval(this.ajaxInterval);
-      setTimeout(function () {
-        that.getStatistics();
-        that.getBingo();
-      },300);
+      // clearInterval(this.ajaxInterval);
+      // setTimeout( () => {
+      //   this.getStatistics();
+      //   this.getBingo();
+      // },300);
 
-      this.ajaxInterval = setInterval(function () {
-        if (that.api.password != false && that.api.password != null) {
-          that.getBingo();
-          // New Message Notification
-          //that.getMessage();
-          that.getStatistics();
-        }
-      }, 10000);
+
 
       if (this.api.pageName == 'DialogPage') {
         $('.footerMenu').hide();
@@ -1107,16 +1166,16 @@ export class MyApp {
       }
 
       //let el = this;
-      window.addEventListener('native.keyboardshow', function () {
+      // window.addEventListener('native.keyboardshow', function () {
         //alert(1);
-        $('.keyboardClose').hide();
+        // $('.keyboardClose').hide();
 
-      });
-      window.addEventListener('native.keyboardhide', function () {
+      // });
+      // window.addEventListener('native.keyboardhide', function () {
         //alert(2);
-        $('.keyboardClose').show();
+        // $('.keyboardClose').show();
 
-      });
+      // });
 
       if (this.api.pageName == 'LoginPage') {
         //clearInterval(this.interval);
@@ -1135,12 +1194,10 @@ export class MyApp {
         this.api.userIsPaying = (!val) ? false : val.userIsPaying;
         this.api.textMess = (!val) ? false : val.textMess;
 
-        this.checkStatus();
-
-        if (!val) {
-          this.menu_items = this.menu_items_logout;
-          this.is_login = false;
-        } else {
+        if (val) {
+          this.api.status = val.status;
+          this.api.userIsPaying = val.userIsPaying;
+          this.api.textMess = val.textMess;
           this.getStatistics();
           if (val.status == 'not_activated') {
             this.menu_items = this.menu_items_logout;
@@ -1149,10 +1206,110 @@ export class MyApp {
             this.is_login = true;
             this.menu_items = this.menu_items_login;
           }
+        } else {
+          this.api.status = false;
+          this.api.userIsPaying = false;
+          this.api.textMess = false;
+          this.menu_items = this.menu_items_logout;
+          this.is_login = false;
         }
 
+        this.checkStatus();
       });
       this.username = this.api.username;
     });
   }
+
+  adminPush(data) {
+    console.log(data)
+    if (!data.additionalData.foreground) {
+        if (data.additionalData.type == 'linkOut') {
+          this.iap.create(data.additionalData.url);
+        } else {
+          this.adminPushEnterPage(data)
+        }
+    } else {
+      const alert = this.api.alertCtrl.create({
+        title: data.additionalData.titleMess,
+        message: data.message,
+        buttons: [
+          {
+            text: data.additionalData.buttons.view,
+            handler: () => {
+              if (data.additionalData.type == 'linkOut') {
+                this.iap.create(data.additionalData.url);
+              } else {
+                // this.nav.push(data.additionalData.url);
+                let params = {};
+                this.adminPushEnterPage(data)
+              }
+            }
+          },
+          {
+            text: data.additionalData.buttons.cancel
+          }
+        ]
+      })
+      alert.present();
+    }
+  }
+
+  adminPushEnterPage(data) {
+    let params = {};
+    switch (data.additionalData.url) {
+      case 'ArenaPage':
+        this.nav.push(ArenaPage);
+        break;
+      case 'SubscriptionPage':
+        this.nav.push(SubscriptionPage);
+        break;
+      case 'NotificationsPage':
+        this.nav.push(NotificationsPage);
+        break;
+
+      case 'NewUsersPage':
+        params = JSON.stringify({
+          action: "online",
+          filter: "new",
+          list: "",
+          page: 1,
+          searchparams: {region: "", agefrom: 0, ageto: 0, sexpreef: "", meritalstat: "", userNick: ""},
+          usersCount: 20
+        });
+        this.nav.push(HomePage, { params: params });
+        break;
+      case 'OnlineUsersPage':
+        params = JSON.stringify({
+          action: "online",
+          filter: "lastActivity",
+          list: "",
+          page: 1,
+          searchparams: {region: "", agefrom: 0, ageto: 0, userNick: ""},
+          usersCount: 20,
+        })
+        this.nav.push(HomePage, { params: params });
+        break;
+      case 'NearmeUsersPage':
+        params = JSON.stringify({
+          action: "online",
+          filter: "distance",
+          list: "",
+          page: 1
+        })
+        this.nav.push(HomePage, { params: params });
+        break;
+      case 'FreeTodayPage':
+        params = JSON.stringify({
+          action: "search",
+          filter: "new",
+          list: "",
+          page: 1,
+          searchparams: {region: "", agefrom: 0, ageto: 0, userNick: "", freeToday: 1},
+          usersCount: 20,
+        })
+        this.nav.push(HomePage, { params: params });
+        break;
+    }
+  }
+
 }

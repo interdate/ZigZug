@@ -97,17 +97,17 @@ export class EditSubscriptionPage {
 
   onDowngrade() {
     const alert = this.alertCtrl.create({
-      title: 'downgrade',
-      message: 'you left bonuses...',
+      title: this.data.texts.downgradePopup.title,
+      message: this.data.texts.downgradePopup.message,
       buttons: [
         {
-          text: 'stay vip'
+          text: this.data.texts.downgradePopup.buttons.stayVip
         },
         {
-          text: 'disable vip',
+          text: this.data.texts.downgradePopup.buttons.disableVip,
           handler: () => {
             this.api.http.post(this.api.url + '/user/subscription/remove-vip', {}, this.api.header)
-              .subscribe((res :any) => {
+              .subscribe((res: any) => {
               const successAlert = this.alertCtrl.create({
                 title: res.texts.title,
                 message: res.texts.message,
@@ -118,6 +118,7 @@ export class EditSubscriptionPage {
                 ]
               })
               successAlert.present();
+              this.data.disableVipUpdate = true;
             })
           }
         }
@@ -129,6 +130,17 @@ export class EditSubscriptionPage {
   }
 
 
+  onUpdateDowngraded() {
+    this.api.http.post(this.api.url + '/user/subscription/update-downgraded', {}, this.api.header).subscribe((data: any) => {
+      if (data.success) {
+        alert(this.data.texts.updateDowngradedPopup.message)
+        this.data.disableVipUpdate = false;
+        this.api.isVip = true;
+      } else {
+        alert('משהו השתבש, צור קשר לחידוש')
+      }
+    })
+  }
 
   ionViewWillEnter() {
     this.api.pageName = 'EditSubscriptionPage';

@@ -295,6 +295,10 @@ page-login {
     padding: 10px 8px;
   }
   input.usern{margin-bottom: 0px;}
+
+  .member-img {
+    -webkit-filter: blur(5px);
+  }
 }
 
 .ios page-login .bg-image {

@@ -43,12 +43,12 @@ export class Page {
     }
 
     ionViewWillLeave() {
-        $('.back-btn').hide();
+        this.api.showBackBtn = false;
     }
 
     ionViewWillEnter() {
         this.api.pageName = 'PagePage';
-        $('.back-btn').show();
+        this.api.showBackBtn = true;
     }
 
 }

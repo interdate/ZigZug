@@ -5,7 +5,7 @@
     </button>
     <button (click)="homePage()" class="logo"><img src="assets/img/icons/logo.png" alt="sugardaddy"></button>
   </ion-navbar>
-  <div tappable (click)="goBack()" class="back-btu-wrap">
+  <div tappable (click)="goBack()" class="back-btu-wrap" *ngIf="api.showBackBtn">
     <div class="back-btn">
       <ion-icon name="ios-arrow-forward"></ion-icon>
       <!--
@@ -45,6 +45,8 @@
                   </button>
                 </div>
               </ion-list>
+
+    <div (click)="menuBannerClick()" class="menuBanner" [ngStyle]="{'background-image': 'url('+menuBanner+')'}"></div>
             </ion-content>
           </ion-menu>
 
@@ -63,7 +65,10 @@
                   <ion-icon id="{{menu_item_settings._id}}" name="{{menu_item_settings.icon}}"></ion-icon>
                   {{menu_item_settings.title}}
                 </button>
+
+
               </ion-list>
+              <div (click)="menuBannerClick()" class="menuBanner" [ngStyle]="{'background-image': 'url('+menuBanner+')'}"></div>
             </ion-content>
           </ion-menu>
 
@@ -87,7 +92,10 @@
         </ion-badge>
       </button>
     </ion-list>
-  </ion-content>
+
+              <div (click)="menuBannerClick()" class="menuBanner" [ngStyle]="{'background-image': 'url('+menuBanner+')'}"></div>
+            </ion-content>
+
 </ion-menu>
 
 <a class="link-banner" *ngIf="banner?.src != '.' && banner?.src != '' && banner?.link != ''" href="{{banner?.link}}" (click)="goTo();" [ngClass]="{'not-login': !is_login}">

@@ -63,7 +63,9 @@ import {FreezePageModule} from "../pages/freeze/freeze.module";
 import {FreezePage} from "../pages/freeze/freeze";
 import {VipModal2PageModule} from "../pages/vip-modal2/vip-modal2.module";
 import {EditSubscriptionPageModule} from "../pages/edit-subscription/edit-subscription.module";
-//import {KeyboardOriginal} from "@ionic-native/keyboard";
+import {Deeplinks} from "@ionic-native/deeplinks";
+import {TestVirtualScrollPage} from "../pages/test-virtual-scroll/test-virtual-scroll";
+import {NewTestVirtualScrollPageModule} from "../pages/new-test-virtual-scroll/new-test-virtual-scroll.module";
 
 @NgModule({
   declarations: [
@@ -76,7 +78,8 @@ import {EditSubscriptionPageModule} from "../pages/edit-subscription/edit-subscr
     HttpClientModule,
     IonicModule.forRoot(MyApp, {
       menuType: 'overlay',
-
+      scrollAssist: false,
+      autoFocusAssist: false
     }, {
       links: [
         {component: HomePage, name: 'בית', segment: 'home'},
@@ -104,6 +107,7 @@ import {EditSubscriptionPageModule} from "../pages/edit-subscription/edit-subscr
         {component: NotificationsPage, name: 'התיבה שלי', segment: 'notifications', defaultHistory: [HomePage]},
         {component: SearchResultPage, name: 'תוצאות חיפוש', segment: 'page-search-result/:gender/:ageFrom/:ageTo', defaultHistory: [HomePage]},
         {component: FreezePage, name: 'הקפאת חשבון', segment: 'freeze', defaultHistory: [HomePage]},
+        {component: TestVirtualScrollPage, name: 'test', segment: 'test', defaultHistory: [TestVirtualScrollPage]},
       ]
     }),
     IonicStorageModule.forRoot(),
@@ -132,12 +136,13 @@ import {EditSubscriptionPageModule} from "../pages/edit-subscription/edit-subscr
     SearchResultPageModule,
     FreezePageModule,
     EditSubscriptionPageModule,
+    NewTestVirtualScrollPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
-    ActivationPage
+    ActivationPage,
   ],
   providers: [
     StatusBar,
@@ -154,7 +159,8 @@ import {EditSubscriptionPageModule} from "../pages/edit-subscription/edit-subscr
     AndroidPermissions,
     Media,
     Device,
-    FingerprintAIO
+    FingerprintAIO,
+    Deeplinks,
   ]
 })
 export class AppModule {}

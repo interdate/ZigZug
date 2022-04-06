@@ -27,7 +27,10 @@ export class InboxPage {
     loader:any = true;
     textMess: any;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, public api: ApiProvider, public toastCtrl: ToastController) {
+    constructor(public navCtrl: NavController,
+                public navParams: NavParams,
+                public api: ApiProvider,
+                public toastCtrl: ToastController) {
         this.api.showLoad();
         this.api.http.get(this.api.url + '/user/contacts/perPage:' + this.prop.perPage + '/page:' + this.prop.page, this.api.setHeaders(true)).subscribe(data => {
             let res:any = data;
@@ -107,11 +110,14 @@ export class InboxPage {
     // }
 
     ionViewWillEnter() {
-        if(this.chatWith){
+      console.log(this.chatWith);
+      if(this.chatWith || this.chatWith === 0){
           //let index = this.users.indexOf(this.chatWith);
           let user = this.users[this.chatWith];
+          console.log(user)
           if(user.user.userId == 0){
-            this.users.slice(this.chatWith, 1);
+            // this.users.slice(this.chatWith, 1);
+            console.log(user)
           }else {
             this.api.http.get(this.api.url + '/user/inbox/' + user.user.userId, this.api.setHeaders(true)).subscribe((data: any) => {
               if (data.res) {

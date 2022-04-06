@@ -91,12 +91,12 @@ export class ArticlePage {
     if(this.clear){
       this.api.storage.remove('articles');
     }
-    $('.back-btn').hide();
+    this.api.showBackBtn = false;
   }
 
   ionViewWillEnter() {
     this.api.pageName = 'ArticlePage';
-    $('.back-btn').show();
+    this.api.showBackBtn = true;
   }
 
 }

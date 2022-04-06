@@ -19,10 +19,16 @@
       <span class="label">{{info?.label}}</span>
       <span class="value">{{info?.value}}</span>
     </p>
+
+    <p *ngIf="data.disableVipUpdate">
+        {{ data.disableVipUpdateText }}
+    </p>
   </div>
 
-  <button *ngIf="!api.isVip" ion-button color="danger" (click)="onUpgrade()"> {{data?.texts?.buttons?.upgrade}} </button>
-  <button *ngIf="api.isVip" ion-button color="danger" (click)="onDowngrade()"> {{data?.texts?.buttons?.downgrade}} </button>
+  <button *ngIf="!api.isVip && !data.disableVipUpdate" ion-button color="danger" (click)="onUpgrade()"> {{data?.texts?.buttons?.upgrade}} </button>
+  <button *ngIf="api.isVip && !data.disableVipUpdate" ion-button color="danger" (click)="onDowngrade()"> {{data?.texts?.buttons?.downgrade}} </button>
+  <button *ngIf="data.disableVipUpdate" ion-button color="danger" (click)="onUpdateDowngraded()"> {{data?.texts?.buttons?.updateDowngraded}} </button>
+
 
 </ion-content>
 

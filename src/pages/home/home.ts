@@ -8,6 +8,8 @@ import {LoginPage} from "../login/login";
 import {Push} from "@ionic-native/push";
 import {ActivationPage} from "../activation/activation";
 import {SubscriptionPage} from "../subscription/subscription";
+import {TestVirtualScrollPage} from "../test-virtual-scroll/test-virtual-scroll";
+import {NewTestVirtualScrollPage} from "../new-test-virtual-scroll/new-test-virtual-scroll";
 
 
 @Component({
@@ -126,7 +128,8 @@ export class HomePage {
 
         if(this.params.action == 'online' && this.params.filter == 'distance'){
           this.api.filter = 'distance';
-        }else if(this.params.action == 'search' && this.params.searchparams.freeToday == 1){
+        }else if(this.params.action == 'search'
+          && this.params.searchparams && this.params.searchparams.freeToday == 1){
           this.api.filter = 'freeToday';
         }else if(this.params.list == ''){
           this.api.filter = this.params.action;
@@ -189,11 +192,11 @@ export class HomePage {
         }
     }
 
-    addLike(user,index) {
+    addLike(user) {
 
         if (user.isLike == '0') {
 
-            this.users[index].isLike = '1';
+            user.isLike = '1';
 
             // let toast = this.toastCtrl.create({
             //     message: ' עשית לייק ל' + user.nickName,
@@ -275,7 +278,7 @@ export class HomePage {
 
     unFavorites(user,index) {
         if(user.isFav == '1') {
-            this.users[index].isFav = '0';
+            user.isFav = '0';
             let params = JSON.stringify({
                 list: 'Unfavorite'
             });
@@ -301,7 +304,7 @@ export class HomePage {
         }
     }
 
-    addFavorites(user, index) {
+    addFavorites(user) {
 
         let params;
         let url;
@@ -467,6 +470,10 @@ export class HomePage {
         }
     }
 
+    testClick() {
+      this.navCtrl.push(NewTestVirtualScrollPage);
+    }
+
 
     moreUsers(infiniteScroll?: any) {
 
@@ -492,7 +499,7 @@ export class HomePage {
 
                     infiniteScroll.complete();
 
-                // }else{
+                }else{
                 //     let that = this;
                 //     setTimeout(function () {
                 //         if(that.api.pageName == 'HomePage') {
@@ -500,7 +507,7 @@ export class HomePage {
                 //         }
                 //     },1000);
                 }
-            },error => {
+            },      error => {
                 this.api.hideLoad();
             });
 
@@ -523,7 +530,7 @@ export class HomePage {
 
     ionViewWillEnter() {
         this.api.pageName = 'HomePage';
-        $('.back-btn').hide();
+        this.api.showBackBtn = false;
 
     }
 

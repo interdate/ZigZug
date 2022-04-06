@@ -346,8 +346,8 @@ ion-card {
 
 .distance {
   font-weight: bold;
-  position: absolute;
-  left: 8px;
+  //position: absolute;
+  //left: 8px;
   line-height: 18px;
   direction: rtl;
   font-size: 12px;
@@ -390,14 +390,18 @@ ul.profile-btn .btn div {
   background: white;
   border-radius: 12px;
   background: transparent !important;
+  width: 100%;
+}
+.usr_profile {
+  height: 185px;
 }
 
 .usr_profile .avatar {
-  width: 100%;
-  height: 130px;
+  width: 113%;
+  height: 100%;
   background-size: cover;
   background-position: top;
-  border-radius: 11px 11px 0 0;
+  border-radius: 10px 0 0 10px;
   background-color: transparent !important;
 }
 
@@ -446,6 +450,10 @@ ion-popover {
   border-radius: 12px;
   position: relative;
   background-color: #d9d9d9 !important;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: nowrap;
+  height: 100%;
 }
 
 .user-section.vip {

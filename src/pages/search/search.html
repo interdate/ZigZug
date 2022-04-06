@@ -20,6 +20,7 @@
                 [(ngModel)]="form?.form?.region.value">
       <ion-option value="{{area.value}}" *ngFor="let area of form.form.region.choices">{{area.label}}</ion-option>
     </ion-select>
+    <div class="clr"></div>
   </ion-item>
   <div (click)="openSelect(form?.form?.ageFrom,'ageFrom')" class="border-top">
     <div class="select-value">{{form?.form?.ageFrom.valLabel}}</div>

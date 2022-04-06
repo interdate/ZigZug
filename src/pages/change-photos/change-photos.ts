@@ -11,6 +11,7 @@ import {LoginPage} from "../login/login";
 import {File} from "@ionic-native/file";
 import * as $ from "jquery";
 import {ActivationPage} from "../activation/activation";
+import {AndroidPermissions} from "@ionic-native/android-permissions";
 
 //declare var formInitById;
 //declare var submitForm;
@@ -40,6 +41,7 @@ export class ChangePhotosPage {
     userId: any;
     new_user: any = false;
     imgLoad: any = '0';
+    openGalleryInterval: any;
 
     dataPage: { noPhoto: any, texts: any, images: Array<{ _id: string, items: {}, url: string, imgValidated: string, main: string}> };
     description: any;
@@ -53,7 +55,8 @@ export class ChangePhotosPage {
         public fileTransfer: FileTransfer,
         public imagePicker: ImagePicker,
         public actionSheetCtrl: ActionSheetController,
-        public file: File
+        public file: File,
+        public ap: AndroidPermissions,
     ) {
 
         if (navParams.get('new_user')) {
@@ -457,23 +460,66 @@ export class ChangePhotosPage {
     }
 
     openGallery() {
+      console.log('openGallery')
+      // console.log(this.ap.PERMISSION)
+      // console.log(this.ap.checkPermission(this.ap.PERMISSION.CAMERA))
+      this.imagePicker.hasReadPermission().then(res => {
+        if(res) {
+          console.log('f res')
+          console.log(res)
+          this.openGalleryWithPermissions();
+        } else {
+          this.imagePicker.requestReadPermission().then(res => {
+            console.log('sec res');
+            console.log(res);
 
-        let options = {
-            maximumImagesCount: 1,
-            width: 600,
-            height: 600,
-            quality: 100
-        };
 
-        this.imagePicker.getPictures(options).then(
-            (file_uris) => {
-                this.uploadPhoto(file_uris[0]);
-            },
+            this.openGalleryInterval = setInterval(() => {
+              this.checkIfNeedOpem()
+            }, 500)
 
-            (err) => {
-                //alert(JSON.stringify(err))
-            }
-        );
+            setTimeout(( )=> {
+              clearInterval(this.openGalleryInterval);
+            }, 10000)
+
+
+            // if (res) {
+            //   this.openGalleryWithPermissions();
+            // }
+          })
+        }
+      })
+
+    }
+
+    checkIfNeedOpem() {
+      console.log('in checkIfNeedOpem')
+      this.imagePicker.hasReadPermission().then((res) => {
+        if (res) {
+          clearInterval(this.openGalleryInterval);
+          this.openGalleryWithPermissions();
+        }
+      })
+    }
+
+    openGalleryWithPermissions() {
+      let options = {
+        maximumImagesCount: 1,
+        width: 600,
+        height: 600,
+        quality: 100
+      };
+      this.imagePicker.getPictures(options).then(
+        (file_uris) => {
+          // alert(1)
+          this.uploadPhoto(file_uris[0]);
+        },
+
+        (err) => {
+          // alert(2)
+          // this.openGallery();
+        }
+      );
     }
 
     openCamera() {

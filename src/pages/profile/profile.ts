@@ -5,6 +5,7 @@ import {FullScreenProfilePage} from "../full-screen-profile/full-screen-profile"
 import {DialogPage} from "../dialog/dialog";
 
 import * as $ from 'jquery';
+import {HomePage} from "../home/home";
 
 /**
  * Generated class for the ProfilePage page.
@@ -36,6 +37,7 @@ export class ProfilePage {
     imageClick: boolean = false;
 
     photos:any = [];
+
 
     constructor(
         public navCtrl: NavController,
@@ -359,16 +361,22 @@ export class ProfilePage {
     }
 
     ionViewWillLeave() {
-        $('.back-btn').hide();
+        this.api.showBackBtn = false;
     }
 
     toVideoChat() {
       this.api.openVideoChat({id: this.user.id, chatId: 0, alert: false, username: this.user.userNick});
     }
 
+
     ionViewWillEnter() {
         this.api.pageName = 'ProfilePage';
-        $('.back-btn').show();
+        this.api.showBackBtn = true;
+      console.log(this.api.showBackBtn)
     }
+
+  back() {
+    this.navCtrl.pop({animate: false}).then(res => console.log(res));
+  }
 
 }

@@ -404,7 +404,7 @@ export class LoginPage {
     ionViewWillEnter() {
       $('.banner').css({'bottom':'3px'});
         this.api.pageName = 'LoginPage';
-        $('.back-btn').hide();
+        this.api.showBackBtn = false;
     }
 
     ionViewWillLeave() {

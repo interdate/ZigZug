@@ -34,7 +34,7 @@ export class FreezePage {
 
   ionViewWillEnter() {
     this.api.pageName = 'FreezePage';
-    $('.back-btn').show();
+    this.api.showBackBtn = true;
   }
 
   submit(){

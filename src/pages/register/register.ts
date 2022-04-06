@@ -71,7 +71,12 @@ export class RegisterPage {
                 this.errors = res.errors;
                 if(this.user.step == 2 && this.login == 'login'){
                   this.api.storage.set('username', this.user.userNick);
-                  this.api.setHeaders(true, this.user.userNick);
+                  this.api.storage.get('user_data').then((data: any) => {
+                    data.username = this.user.userNick;
+                    this.api.storage.set('user_data', data);
+                  });
+
+                  this.api.setHeaders(true, this.user.userNick, this.api.password);
                   this.api.viewName = this.user.userNick;
                 }
 

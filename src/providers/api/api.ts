@@ -11,7 +11,6 @@ import { Geolocation } from '@ionic-native/geolocation';
 import {FingerprintAIO} from "@ionic-native/fingerprint-aio";
 import {InAppBrowser} from "@ionic-native/in-app-browser";
 import * as $ from "jquery";
-import {a} from "@angular/core/src/render3";
 //import {KeyboardOriginal} from "@ionic-native/keyboard";
 
 /*
@@ -49,7 +48,7 @@ export class ApiProvider {
     public notActivateAlert: any = false;
     public faioData: any;
     public browserToken: any;
-    public appVersion: any = 13;
+    public appVersion: any = 16;
     public callAlertShow:any = false;
     public videoChat: any = null;
     public videoTimer: any = null;
@@ -61,6 +60,7 @@ export class ApiProvider {
     public transferStart: any = false;
     public notCheckStatus: any = false;
     public filter: any = '';
+    public showBackBtn = false;
 
     constructor(
         public storage: Storage,
@@ -74,7 +74,7 @@ export class ApiProvider {
         public modalCtrl: ModalController,
         public fingerAIO: FingerprintAIO,
         public iab: InAppBrowser,
-        public events: Events
+        public events: Events,
     ) {
         //this.url = 'http://localhost:8103';
         //this.url = 'http://10.0.0.7:8100';
@@ -82,13 +82,13 @@ export class ApiProvider {
         //this.url = 'https://newzigzug1.wee.co.il/api/v2';
         //this.siteUrl = 'https://newzigzug2.wee.co.il';
         // this.siteUrl = 'https://www.zigzug.co.il';
-        this.siteUrl = 'http://localhost:8123/app_dev.php';
+        this.siteUrl = 'http://localhost:8124';
         this.url = this.siteUrl + '/api/v2';
         // alert(43)
         //this.testingMode = true;
       // export JAVA_HOME=`/usr/libexec/java_home -v 1.8.0_221`
     }
-
+  class="headerIcon"
   openVideoChat(param){
     this.storage.get('user_data').then((data) => {
       if(this.callAlert && this.callAlert != null) {
@@ -494,11 +494,13 @@ export class ApiProvider {
 
         let myHeaders = new HttpHeaders();
 
-        myHeaders = myHeaders.append('Content-type', 'application/json');
+        myHeaders = myHeaders.append('Content-type', 'application/json; charset=utf-8');
         myHeaders = myHeaders.append('Accept', '*/*');
         myHeaders = myHeaders.append('Access-Control-Allow-Origin', '*');
-        if (this.username && (this.username.toLowerCase() == 'popo' || this.username.toLowerCase() == 'tiptip')) {
-          myHeaders = myHeaders.append('testingMode', '1');
+        if (this.username) {
+          // myHeaders = myHeaders.append('testingMode', this.username.toLowerCase());
+          myHeaders = myHeaders.append('userName', encodeURIComponent(this.username.toLowerCase()));
+
         }
 
         //myHeaders = myHeaders.append('Origin', 'http://localhost');

@@ -49,7 +49,7 @@ export class ContactUsPage {
 
         this.defaultText = this.navParams.get('texts');
         if ( this.defaultText) {
-          this.form.form.subject.value = this.defaultText.title;
+          this.form.form.subject.value = this.defaultText.subject;
           this.form.form.text.value = this.defaultText.message;
         }
     }

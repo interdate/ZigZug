@@ -91,7 +91,8 @@ page-profile {
 
   .pmtitle.bottom {
     text-align: center;
-    padding: 4px 10px 14px 10px;
+    height: auto;
+    padding: 10px 0;
   }
 
   .pmtitle.bottom.notBottom{
@@ -269,6 +270,18 @@ page-profile {
 
   .profile-sub-title span.single{
     width: calc(66% + 3px);
+  }
+
+  .abuse-form {
+    margin-top: 20px;
+  }
+
+  .bottom {
+    padding-bottom: 10px!important;
+  }
+
+  .scroll-content {
+    padding-bottom: 0 !important;
   }
 
 }

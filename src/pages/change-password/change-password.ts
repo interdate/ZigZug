@@ -51,7 +51,7 @@ export class ChangePasswordPage {
 
     validate(response) {
 
-        response = response.success;
+        // response = response.success;
 
         this.oldPassword = '';
         this.first_pass = '';
@@ -60,7 +60,7 @@ export class ChangePasswordPage {
         if (response.changed == true) {
 
             // this.api.setStorageData({label: 'password', value: this.form.form.password.first.value});
-            this.api.setHeaders(true, false, this.form.form.password.first.value);
+            this.api.setHeaders(true, this.api.username, this.form.form.password.first.value);
             this.api.storage.get('user_data').then((val) => {
                 val.password = this.form.form.password.first.value;
                 this.api.storage.set('user_data', val);
